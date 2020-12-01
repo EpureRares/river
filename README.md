@@ -73,13 +73,31 @@ Currently you can run `concolic_GenerationalSearch2.py` with a sample of paramet
 --outputType textual
 ```
 
-The targetAddress is optional; it is for "capture the flag"-like kind of things, where you want to get to a certain address in the binary code.
-If you have the source code, you can use: the following command to get the address of interest. The execution will stop when the target is reached, otherwise it will exhaustively try to search all inputs.
+The `targetAddress` is optional; it is for "capture the flag"-like kind of things, where you want to get to a certain address in the binary code.
+If you have the source code, you can use: the following command to get the address of interest.
+The execution will stop when the target is reached, otherwise it will exhaustively try to search all inputs.
 ```
  objdump -M intel -S ./crackme_xor
 ```
-The secondsBetweenStats is the time in seconds to show various stats between runs. logLevel is working with the ```logging``` module in Python to show logs, basically you put here the level you want to see output. Put DEBUG if you want to see everything outputed as log for example.
-The architecture parameter can be set to x64, x86, ARM32, ARM64.
+
+The `secondsBetweenStats` is the time in seconds to show various stats between runs.
+
+The `logLevel` is working with the `logging` module in Python to show logs, basically you put here the level you want to see output.
+Put `DEBUG` if you want to see everything outputed as log for example.
+
+The `architecture` parameter can be set to x64, x86, ARM32, ARM64.
+
+---
+**NOTE**
+
+By default, `concolic_GenerationalSearch2.py` will search for a function named `RIVERTestOneInput` to use as a testing entrypoint.
+If one desires to change the entrypoint, he can use the `--entryfuncName` option.
+The example bellow sets `main` as the entrypoint:
+```
+--entryfuncName "main"
+```
+
+---
 
 ## How to use or concolic Reinforcement Learning based Concolic tool? 
 Same parameters as above. Note that our implementation is done using Tensorflow 2 (2.3 version was tested). You can modify manually the parameters of the model from RLConcolicModelTf.py script.
