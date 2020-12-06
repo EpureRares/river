@@ -36,19 +36,17 @@ RUN ["/bin/bash", "-c", "cd /home/circleci/river/River3/ExternalTools/Triton && 
 
 # Run example test when container starts
 CMD cd /home/circleci/river/River3/TestPrograms && \
-    gcc -g -O0 -o crackme_xor crackme_xor.c && \
+    gcc -g -O0 -o crackme_sample crackme_sample.c && \
     cd ../python && \
-    python3 concolic_GenerationalSearch2.py --binaryPath "../TestPrograms/crackme_xor" \
+    python3 concolic_GenerationalSearch2.py --binaryPath "../TestPrograms/crackme_sample" \
                                             --architecture x64 \
                                             --maxLen 1 \
-                                            --targetAddress 0x11d3 \
                                             --logLevel CRITICAL \
                                             --secondsBetweenStats 10 \
                                             --outputType textual && \
-    python3 concolic_RLGenerationalSearch.py --binaryPath "../TestPrograms/crackme_xor" \
+    python3 concolic_RLGenerationalSearch.py --binaryPath "../TestPrograms/crackme_sample" \
                                              --architecture x64 \
                                              --maxLen 1 \
-                                             --targetAddress 0x11d3 \
                                              --logLevel CRITICAL \
                                              --secondsBetweenStats 10 \
                                              --outputType textual
