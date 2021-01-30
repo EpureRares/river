@@ -35,6 +35,15 @@ int connect_to_server()
     return server_sock;
 }
 
+void read_program_name(char* program_name)
+{
+    FILE* fp = fopen("/proc/self/cmdline", "r");
+    fscanf(fp, "%s\n", program_name);
+    fclose(fp);
+}
+
+extern char *program_invocation_name;
+extern char *program_invocation_short_name;
 
 /**
  * We will redirect stdout to our server socket at library load time
@@ -46,6 +55,17 @@ void __attribute__ ((constructor)) my_init(void)
     int server_sock = 0;
 
     server_sock = connect_to_server();
+
+    char* path = getenv("_");
+    printf("PATH has val %s\n", path);
+
+    char program_name[256];
+    read_program_name(program_name);
+    printf("==\n%s\n==\n", program_name);
+
+    printf("%s\n", program_invocation_name);
+    printf("%s\n", program_invocation_short_name);
+
     dup2(server_sock, STDOUT_FILENO); /* Redirect stdout to socket pipe */
 }
 

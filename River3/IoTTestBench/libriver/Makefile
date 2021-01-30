@@ -48,6 +48,8 @@ $(OBJ)/libriver.o: $(LIB_SRCS)
 $(OBJ)/%.o: $(SRC)/%.c
 	@test -d $(OBJ) || mkdir -p $(OBJ)
 	$(CC) $(CCFLAGS) $(LFLAGS) -c $< -o $@
+run:
+	$(BIN)/process-wrapper
 
 clean:
 	rm -rf $(OBJ) $(BIN)
