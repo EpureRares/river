@@ -19,7 +19,7 @@ RUN pip3 install setuptools --upgrade && \
     pip3 install capstone lief tensorflow
 
 # Clone River and it's submodules
-RUN git clone --recursive https://github.com/AGAPIA/river.git
+RUN git clone --recursive https://github.com/unibuc-cs/river
 
 # Build Triton from source and install it in the default paths
 # Will extract the path to where pip installes packages so it can tell Triton where to find libcapstone
