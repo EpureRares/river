@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 # Install missing packages and required dependencies
 RUN sudo apt-get update && \
     sudo apt-get install -y wget vim ssh git python3 python3-pip \
-        libboost-all-dev libz3-dev cmake
+        libboost-all-dev libz3-dev libxml2 libxml2-dev cmake
 
 # Use pip to install latest capstone and lief libraries
 RUN pip3 install setuptools --upgrade && \
