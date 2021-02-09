@@ -1,3 +1,5 @@
+#!/bin/bash
+
 make && pushd ../../python
 python3 concolic_GenerationalSearch2.py --binaryPath "../TestPrograms/test-libxml2/read_xml" \
     --architecture x64 \
