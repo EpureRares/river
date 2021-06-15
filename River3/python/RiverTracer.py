@@ -306,6 +306,26 @@ class RiverTracer:
 		return len(arg1)
 
 	@staticmethod
+	def getenvHandler(tritonContext):
+		print('[+] Getenv hooked')
+		# Get arguments
+		key = RiverTracer.getMemoryString(tritonContext.getConcreteRegisterValue(tritonContext.registers.rdi), tritonContext)
+
+		value = os.getenv(key)
+		print(f'In getenv with arg {key} val {value}')
+
+		if value is None:
+			return 0
+
+		value += '\0'
+		size = len(value)
+		addr = RiverTracer.mallocImpl(size)
+		for i in range(len(value)):
+			tritonContext.setConcreteMemoryValue(MemoryAccess(addr + i, CPUSIZE.BYTE), ord(value[i]))
+		
+		return addr
+
+	@staticmethod
 	def readHandler(tritonContext):
 		print('[+] Read hooked')
 		# Get arguments
@@ -374,18 +394,12 @@ class RiverTracer:
 
 		return s
 
-	# Simulate the malloc() function
 	@staticmethod
-	def mallocHandler(tritonContext):
+	def mallocImpl(size):
 		global mallocCurrentAllocation
 		global mallocMaxAllocation
 		global mallocBase
 		global mallocChunkSize
-
-		print('[+] Malloc hooked')
-
-		# Get arguments
-		size = tritonContext.getConcreteRegisterValue(tritonContext.registers.rdi)
 
 		if size > mallocChunkSize:
 			print('malloc failed: size too big')
@@ -400,6 +414,16 @@ class RiverTracer:
 
 		# Return value
 		return area
+
+	# Simulate the malloc() function
+	@staticmethod
+	def mallocHandler(tritonContext):
+		print('[+] Malloc hooked')
+
+		# Get arguments
+		size = tritonContext.getConcreteRegisterValue(tritonContext.registers.rdi)
+		return RiverTracer.mallocImpl(size)
+
 
 	def hookingHandler(self, pc):
 		# pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
@@ -446,6 +470,11 @@ class RiverTracer:
 
 # Memory mapping
 BASE_PLT   = 0x10000000
+# Memory mapping
+BASE_PLT   = 0x10000000
+BASE_ARGV  = 0x20000000
+BASE_ALLOC = 0x30000000
+BASE_STACK = 0x9fffffff
 BASE_ARGV  = 0x20000000
 BASE_ALLOC = 0x30000000
 BASE_STACK = 0x9fffffff
@@ -461,4 +490,5 @@ customRelocation = [
 		('read', RiverTracer.readHandler, 0x10000001),
 		('write', RiverTracer.writeHandler, 0x10000002),
 		('malloc', RiverTracer.mallocHandler, 0x10000003),
+		('getenv', RiverTracer.getenvHandler, 0x10000004),
 		]
