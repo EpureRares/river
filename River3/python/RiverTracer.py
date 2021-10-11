@@ -8,6 +8,8 @@ import os
 import array
 import string
 
+from bitstring import BitArray
+
 # Some constants
 # Where the input buffer will reside in the emulated program
 INPUT_BUFFER_ADDRESS = 0x10000000
@@ -93,7 +95,10 @@ class RiverTracer:
 		# pdb.set_trace()
 		# while pc and (pc >= self.codeSection_begin and pc <= self.codeSection_end):
 		while pc:
-			print(hex(pc))
+			# b = self.context.getConcreteRegisterValue(self.context.registers.r12)
+			print(f"pc = {hex(pc)}")
+			# print(f"pc = {hex(pc)} r12 = {hex(b)}")
+			# print(dir(self.context.registers.r12))
 			# Fetch opcode
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
 
@@ -283,6 +288,72 @@ class RiverTracer:
 			RiverTracer.makeRelocation(binary, tracersInstances[tracerIndex].context)
 
 	@staticmethod
+	def makeRelocation(binary, tritonContext):
+		import lief
+
+		# ldd <binary>
+		# linux-vdso.so.1 (0x00007ffe3a524000)
+		# libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fc961d59000)
+		# libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fc9619bb000)
+		# libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fc9617a3000)
+		# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc9613b2000)
+		# /lib64/ld-linux-x86-64.so.2 (0x00007fc96212d000)
+
+		libc = lief.parse("/lib/x86_64-linux-gnu/libc.so.6")
+		phdrs  = libc.segments
+		for phdr in phdrs:
+			size = phdr.physical_size
+			vaddr  = BASE_LIBC + phdr.virtual_address
+			print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+			tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+
+		let_bind = [
+			"printf",
+			"dprintf",
+			"strlen"
+		]
+
+
+		relocations = [x for x in binary.pltgot_relocations]
+		relocations.extend([x for x in binary.dynamic_relocations])
+		# Perform our own relocations
+		for rel in relocations:
+			symbolName = rel.symbol.name
+			symbolRelo = rel.address
+			if symbolName in let_bind:
+				print(f"Hooking {symbolName}")
+				libc_sym_addr = libc.get_symbol(symbolName).value
+				print(f"name {symbolName} addr {hex(libc_sym_addr)} res {hex(BASE_LIBC + libc_sym_addr)}")
+				tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), BASE_LIBC + libc_sym_addr)
+			else:
+				for crel in customRelocation:
+					if symbolName == crel[0]:
+						print('[+] Hooking %s' %(symbolName))
+						tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), crel[2])
+		return
+
+	def hookingHandler(self, pc):
+		# pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
+		for rel in customRelocation:
+			if rel[2] == pc:
+				print(f'Relo-entry: pc = {hex(pc)}, name = {rel[0]}')
+				# Emulate the routine and the return value
+				ret_value = rel[1](self.context)
+				self.context.setConcreteRegisterValue(self.context.registers.rax, ret_value)
+	
+				# Get the return address
+				ret_addr = self.context.getConcreteMemoryValue(
+						MemoryAccess(self.context.getConcreteRegisterValue(self.context.registers.rsp), CPUSIZE.QWORD))
+				print(f'In relo with pc={hex(pc)} ret_val={hex(ret_value)} ret_addr={hex(ret_addr)}')
+	
+				# Hijack RIP to skip the call
+				self.context.setConcreteRegisterValue(self.context.registers.rip, ret_addr)
+	
+				# Restore RSP (simulate the ret)
+				self.context.setConcreteRegisterValue(self.context.registers.rsp, self.context.getConcreteRegisterValue(self.context.registers.rsp)+CPUSIZE.QWORD)
+		return
+
+	@staticmethod
 	def getMemoryString(addr, tritonContext):
 		s = str()
 		index = 0
@@ -395,6 +466,29 @@ class RiverTracer:
 		return s
 
 	@staticmethod
+	def openHandler(tritonContext):
+		global fdes
+		print('[+] Write hooked')
+		# Get arguments
+		# arg1
+		file_name_addr = tritonContext.getConcreteRegisterValue(tritonContext.registers.rdi)
+		# arg2
+		oflag = tritonContext.getConcreteRegisterValue(tritonContext.registers.rsi)
+		# arg3
+		mode = tritonContext.getConcreteRegisterValue(tritonContext.registers.rdx)
+		# arg4 = tritonContext.getConcreteRegisterValue(tritonContext.registers.rcx)
+		# arg5 = tritonContext.getConcreteRegisterValue(tritonContext.registers.r8)
+		# arg6 = tritonContext.getConcreteRegisterValue(tritonContext.registers.r9)
+
+		# ret = os.write(fd, array.array('B', RiverTracer.getMemoryString(buf_addr, tritonContext)))
+		file_name = RiverTracer.getMemoryString(file_name_addr, tritonContext)
+		print(f"In open with file_name {file_name}")
+		fdes = open(file_name, "w")
+
+		# Return value
+		return fdes.fileno()
+
+	@staticmethod
 	def mallocImpl(size):
 		global mallocCurrentAllocation
 		global mallocMaxAllocation
@@ -424,42 +518,6 @@ class RiverTracer:
 		size = tritonContext.getConcreteRegisterValue(tritonContext.registers.rdi)
 		return RiverTracer.mallocImpl(size)
 
-
-	def hookingHandler(self, pc):
-		# pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
-		for rel in customRelocation:
-			if rel[2] == pc:
-				print(f'Relo-entry: pc = {hex(pc)}, name = {rel[0]}')
-				# Emulate the routine and the return value
-				ret_value = rel[1](self.context)
-				self.context.setConcreteRegisterValue(self.context.registers.rax, ret_value)
-	
-				# Get the return address
-				ret_addr = self.context.getConcreteMemoryValue(
-						MemoryAccess(self.context.getConcreteRegisterValue(self.context.registers.rsp), CPUSIZE.QWORD))
-				print(f'In relo with pc={hex(pc)} ret_val={hex(ret_value)} ret_addr={hex(ret_addr)}')
-	
-				# Hijack RIP to skip the call
-				self.context.setConcreteRegisterValue(self.context.registers.rip, ret_addr)
-	
-				# Restore RSP (simulate the ret)
-				self.context.setConcreteRegisterValue(self.context.registers.rsp, self.context.getConcreteRegisterValue(self.context.registers.rsp)+CPUSIZE.QWORD)
-		return
-
-	@staticmethod
-	def makeRelocation(binary, tritonContext):
-		relocations = [x for x in binary.pltgot_relocations]
-		relocations.extend([x for x in binary.dynamic_relocations])
-		# Perform our own relocations
-		for rel in relocations:
-			symbolName = rel.symbol.name
-			symbolRelo = rel.address
-			for crel in customRelocation:
-				if symbolName == crel[0]:
-					print('[+] Hooking %s' %(symbolName))
-					tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), crel[2])
-		return
-
 	def throwStats(self, target):
 		target.onAddNewStatsFromTracer(self.allBlocksFound)
 		self.allBlocksFound.clear()
@@ -470,13 +528,12 @@ class RiverTracer:
 
 # Memory mapping
 BASE_PLT   = 0x10000000
-# Memory mapping
-BASE_PLT   = 0x10000000
 BASE_ARGV  = 0x20000000
 BASE_ALLOC = 0x30000000
-BASE_STACK = 0x9fffffff
-BASE_ARGV  = 0x20000000
-BASE_ALLOC = 0x30000000
+
+# BASE_LIBC  = 0x80000008
+BASE_LIBC  = 0x7ffff701f000
+
 BASE_STACK = 0x9fffffff
 
 # Allocation information used by malloc()
@@ -484,11 +541,13 @@ mallocCurrentAllocation = 0
 mallocMaxAllocation     = 2048
 mallocBase              = BASE_ALLOC
 mallocChunkSize         = 0x00010000
+fdes = None
 
 customRelocation = [
-		('strlen', RiverTracer.strlenHandler, 0x10000000),
+		# ('strlen', RiverTracer.strlenHandler, 0x10000000),
 		('read', RiverTracer.readHandler, 0x10000001),
 		('write', RiverTracer.writeHandler, 0x10000002),
-		('malloc', RiverTracer.mallocHandler, 0x10000003),
-		('getenv', RiverTracer.getenvHandler, 0x10000004),
+		# ('malloc', RiverTracer.mallocHandler, 0x10000003),
+		# ('getenv', RiverTracer.getenvHandler, 0x10000004),
+		('open', RiverTracer.openHandler, 0x10000005),
 		]

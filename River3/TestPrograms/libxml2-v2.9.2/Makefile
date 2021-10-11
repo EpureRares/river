@@ -5,8 +5,8 @@ CXX=clang++
 
 $(OUT)/xml: target.cc river_shim.o libxml2/.libs/libxml2.a
 	test -d $(OUT) || mkdir -p $(OUT)
-	#$(CXX) $(CXXFLAGS) -std=c++11 target.cc -I libxml2/include libxml2/.libs/libxml2.a river_shim.o -o $(OUT)/xml
-	$(CXX) $(CXXFLAGS) -std=c++11 -g -O0 target.cc -I libxml2/include libxml2/.libs/libxml2.a river_shim.o -o $(OUT)/xml
+	$(CXX) $(CXXFLAGS) -std=c++11 target.cc -I libxml2/include libxml2/.libs/libxml2.a river_shim.o -o $(OUT)/xml
+	#$(CXX) $(CXXFLAGS) -std=c++11 -g -O0 target.cc -I libxml2/include libxml2/.libs/libxml2.a river_shim.o -o $(OUT)/xml
 	#$(CXX) $(CXXFLAGS) -std=c++11 -g -O0 target.cc -I libxml2/include libxml2/.libs/libxml2.a river_shim.o -static -o $(OUT)/xml
 
 libxml2/.libs/libxml2.a:
