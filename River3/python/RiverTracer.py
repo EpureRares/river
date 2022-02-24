@@ -1,12 +1,14 @@
 import RiverUtils
 from RiverUtils import Input
 from typing import List, Dict, Set
-from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
+from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE, OPCODE
 import logging
 import pdb
 import os
 import array
 import string
+import pdb
+import gdb 
 
 from bitstring import BitArray
 
@@ -76,12 +78,33 @@ class RiverTracer:
 		numNewBasicBlocks = 0  # The number of new basic blocks found by this function (only if countBBlocks was activated)
 		newBasicBlocksFound = set()
 		basicBlocksPathFoundThisRun = []
+		
+		def restoreContext():
+			Triton.setConcreteRegisterValue(Triton.registers.rax, int((gdb.parse_and_eval('$rax'))))
+			Triton.setConcreteRegisterValue(Triton.registers.rbx, int((gdb.parse_and_eval('$rbx'))))
+			Triton.setConcreteRegisterValue(Triton.registers.rcx, int((gdb.parse_and_eval('$rcx'))))
+			Triton.setConcreteRegisterValue(Triton.registers.rdx, int((gdb.parse_and_eval('$rdx'))))
+			Triton.setConcreteRegisterValue(Triton.registers.rsp, int(gdb.parse_and_eval('$rsp')))
+			Triton.setConcreteRegisterValue(Triton.registers.rbp, int(gdb.parse_and_eval('$rbp')))
+			Triton.setConcreteRegisterValue(Triton.registers.rdi, int(gdb.parse_and_eval('$rdi')))
+			Triton.setConcreteRegisterValue(Triton.registers.rsi, int(gdb.parse_and_eval('$rsi')))
+			Triton.setConcreteRegisterValue(Triton.registers.r8, int(gdb.parse_and_eval('$r8')))
+			Triton.setConcreteRegisterValue(Triton.registers.r9, int(gdb.parse_and_eval('$r9')))
+			Triton.setConcreteRegisterValue(Triton.registers.r10, int(gdb.parse_and_eval('$r10')))
+			Triton.setConcreteRegisterValue(Triton.registers.r11, int(gdb.parse_and_eval('$r11')))
+			Triton.setConcreteRegisterValue(Triton.registers.r12, int(gdb.parse_and_eval('$r12')))
+			Triton.setConcreteRegisterValue(Triton.registers.r13, int(gdb.parse_and_eval('$r13')))
+			Triton.setConcreteRegisterValue(Triton.registers.r14, int(gdb.parse_and_eval('$r14')))
+			Triton.setConcreteRegisterValue(Triton.registers.r15, int(gdb.parse_and_eval('$r15')))
+			Triton.setConcreteRegisterValue(Triton.registers.rip, int(gdb.parse_and_eval('$rip')))
+			Triton.setConcreteRegisterValue(Triton.registers.eflags, int(gdb.parse_and_eval('$eflags')))
 
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
 			nonlocal newBasicBlocksFound
 			nonlocal basicBlocksPathFoundThisRun
 
+			# print(f"{hex(addr)}")
 			basicBlocksPathFoundThisRun.append(addr)
 			# Is this a new basic block ?
 			if addr not in self.allBlocksFound:
@@ -94,11 +117,8 @@ class RiverTracer:
 		logging.info('[+] Starting emulation.')
 		# pdb.set_trace()
 		# while pc and (pc >= self.codeSection_begin and pc <= self.codeSection_end):
+		# pdb.set_trace()
 		while pc:
-			# b = self.context.getConcreteRegisterValue(self.context.registers.r12)
-			print(f"pc = {hex(pc)}")
-			# print(f"pc = {hex(pc)} r12 = {hex(b)}")
-			# print(dir(self.context.registers.r12))
 			# Fetch opcode
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
 
@@ -117,11 +137,33 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
 
+			if ((pc >= END_EXEC or pc <= BASE_EXEC)):
+				gdb.execute("next")
+
+				if gdb.selected_inferior().pid == 0:
+					break
+
+				pc = (int(gdb.parse_and_eval('$rip')))
+				while (pc >= END_EXEC or pc <= BASE_EXEC):
+					gdb.execute("next")
+					if gdb.selected_inferior().pid == 0:
+						break
+					pc = (int(gdb.parse_and_eval('$rip')))
+
+				if gdb.selected_inferior().pid == 0:
+					break
+				restoreContext()
+
+			else:
+				gdb.execute("stepi")
+				restoreContext()
+
 			if instruction.isControlFlow():
 				currentBBlockAddr = pc
 				onBasicBlockFound(currentBBlockAddr)
-				logging.info(f"Instruction is control flow of type {instruction.getType()}. Addr of the new Basic block {hex(currentBBlockAddr)}")
-
+				print(instruction)
+				print(instruction.getOperands())
+				
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
 				targetAddressFound = True
 
@@ -249,8 +291,27 @@ class RiverTracer:
 	# Load the binary segments into the given set of contexts given as a list
 	@staticmethod
 	def loadBinary(tracersInstances, binaryPath, entryfuncName):
+		global BASE_EXEC
+		global END_EXEC
+		global SIZE
+		
 		outEntryFuncAddr = None
+		gdb.execute("set args elite")
+		gdb.execute("start");
+	
+		info_exec = gdb.execute("info proc exe", False, True)
+		info_mappings = gdb.execute("info proc mappings", False, True)
+		name_exec = info_exec.split("exe = ")[1]
+		name_exec = name_exec.split('\n')[0].replace('\'', '')
+		info_mappings = info_mappings.split('\n')
+		info_mappings = [x.split() for x in info_mappings[4:]]
+		exec_mapping = [x for x in info_mappings for y in x if name_exec == y]
 
+		for i in range(len(exec_mapping)):
+			SIZE += int(exec_mapping[i][2], 0)
+
+		BASE_EXEC = int(exec_mapping[0][0].replace('\'',''), 0)
+		END_EXEC = BASE_EXEC + SIZE
 		logging.info(f"Loading the binary at path {binaryPath}..")
 		import lief
 		binary = lief.parse(binaryPath)
@@ -273,7 +334,7 @@ class RiverTracer:
 		assert outEntryFuncAddr != None, "Exported function wasn't found"
 
 		for tracerIndex, tracer in enumerate(tracersInstances):
-			tracersInstances[tracerIndex].entryFuncAddr = outEntryFuncAddr
+			tracersInstances[tracerIndex].entryFuncAddr = outEntryFuncAddr + BASE_EXEC
 			tracersInstances[tracerIndex].codeSection_begin = codeSection_begin
 			tracersInstances[tracerIndex].codeSection_end = codeSection_end
 
@@ -290,7 +351,7 @@ class RiverTracer:
 	@staticmethod
 	def makeRelocation(binary, tritonContext):
 		import lief
-
+		global BASE_EXEC
 		# ldd <binary>
 		# linux-vdso.so.1 (0x00007ffe3a524000)
 		# libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fc961d59000)
@@ -299,23 +360,66 @@ class RiverTracer:
 		# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc9613b2000)
 		# /lib64/ld-linux-x86-64.so.2 (0x00007fc96212d000)
 
-		libc = lief.parse("/lib/x86_64-linux-gnu/libc.so.6")
+		libc = lief.parse("/usr/lib/x86_64-linux-gnu/libc.so.6")
+
 		phdrs  = libc.segments
 		for phdr in phdrs:
 			size = phdr.physical_size
-			vaddr  = BASE_LIBC + phdr.virtual_address
+			vaddr  = BASE_EXEC + phdr.virtual_address
 			print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
 			tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+
+		# phdrs  = libstdc.segments
+		# for phdr in phdrs:
+		# 	size = phdr.physical_size
+		# 	vaddr  = BASE_LIBSTDC + phdr.virtual_address
+		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+
+		# phdrs  = ld.segments
+		# for phdr in phdrs:
+		# 	size = phdr.physical_size
+		# 	vaddr  = BASE_LD + phdr.virtual_address
+		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+
+		# phdrs  = libgcc.segments
+		# for phdr in phdrs:
+		# 	size = phdr.physical_size
+		# 	vaddr  = BASE_LIBGCC + phdr.virtual_address
+		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+
+		# phdrs  = libm.segments
+		# for phdr in phdrs:
+		# 	size = phdr.physical_size
+		# 	vaddr  = BASE_LIBM + phdr.virtual_address
+		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
 
 		let_bind = [
 			"printf",
 			"dprintf",
-			"strlen"
+			"strlen",
+			"vprintf",
+			"psiginfo",
+			"strchrnul",
+			"strchr",
+			"j_strchrnul"
 		]
 
-
+		# relocations = []
+		# for rel in binary.relocations:
+			# relocations.append(rel)
 		relocations = [x for x in binary.pltgot_relocations]
 		relocations.extend([x for x in binary.dynamic_relocations])
+
+		# for rel in [x for x in libc.pltgot_relocations]:
+		# 	if rel.has_symbol:
+		# 		print(str(rel.symbol))
+		# 	else:
+		# 		print(rel.type)
+		# relocations.extend([x for x in libc.dynamic_relocations])
 		# Perform our own relocations
 		for rel in relocations:
 			symbolName = rel.symbol.name
@@ -531,8 +635,9 @@ BASE_PLT   = 0x10000000
 BASE_ARGV  = 0x20000000
 BASE_ALLOC = 0x30000000
 
-# BASE_LIBC  = 0x80000008
-BASE_LIBC  = 0x7ffff701f000
+BASE_EXEC = 0
+END_EXEC = 0
+SIZE = 0
 
 BASE_STACK = 0x9fffffff
 
@@ -545,9 +650,9 @@ fdes = None
 
 customRelocation = [
 		# ('strlen', RiverTracer.strlenHandler, 0x10000000),
-		('read', RiverTracer.readHandler, 0x10000001),
-		('write', RiverTracer.writeHandler, 0x10000002),
+		# ('read', RiverTracer.readHandler, 0x10000001),
+		# ('write', RiverTracer.writeHandler, 0x10000002),
 		# ('malloc', RiverTracer.mallocHandler, 0x10000003),
 		# ('getenv', RiverTracer.getenvHandler, 0x10000004),
-		('open', RiverTracer.openHandler, 0x10000005),
+		# ('open', RiverTracer.openHandler, 0x10000005),
 		]

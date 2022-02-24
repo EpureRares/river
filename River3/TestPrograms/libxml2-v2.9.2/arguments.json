@@ -1,0 +1,9 @@
+{
+	"binaryPath": "../../ExternalTools/Triton/src/examples/python/samples/example",
+	"entryfuncName": "main",
+	"architecture": "x64",
+	"maxLen" : 5,
+	"logLevel" : "CRITICAL",
+	"secondsBetweenStats" : 10,
+	"outputType": "textual"
+}

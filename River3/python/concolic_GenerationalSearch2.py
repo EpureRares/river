@@ -2,6 +2,7 @@
 from __future__ import print_function
 from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 import sys
+sys.path.append('/home/ubuntu/Desktop/licenta/river/River3/python')
 import argparse
 import RiverUtils as RiverUtils
 from RiverTracer import RiverTracer
@@ -11,6 +12,7 @@ import time
 from RiverOutputStats import RiverStatsTextual
 import logging
 import requests
+import gdb
 
 # TODO Bogdan, replace this with the graphical interface
 # The online reconstructed graph that shows possible connections between basic blocks.
@@ -161,7 +163,7 @@ if __name__ == '__main__':
 
     # Create two tracers : one symbolic used for detecting path constraints etc, and another one less heavy used only for tracing and scoring purpose
     symbolicTracer  = RiverTracer(symbolized=True,  architecture=args.architecture, maxInputSize=args.maxLen, targetAddressToReach=args.targetAddress)
-    simpleTracer    = RiverTracer(symbolized=True, architecture=args.architecture, maxInputSize=args.maxLen, targetAddressToReach=args.targetAddress)
+    simpleTracer    = RiverTracer(symbolized=False, architecture=args.architecture, maxInputSize=args.maxLen, targetAddressToReach=args.targetAddress)
 
     # Load the binary info into the given list of tracers. We do this strage API to load only once the binary...
     RiverTracer.loadBinary([symbolicTracer, simpleTracer], args.binaryPath, args.entryfuncName)

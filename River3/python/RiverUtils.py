@@ -4,6 +4,7 @@ import numpy as np
 from triton import TritonContext
 import logging
 import argparse
+import json
 from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 
 # Put the last bytes as fake sentinel inputs to promote some usages detection outside buffer
@@ -14,13 +15,13 @@ def parseArgs():
     ap = argparse.ArgumentParser()
 
     # Add the arguments to the parser
-    ap.add_argument("-bp", "--binaryPath", required=True,
+    ap.add_argument("-bp", "--binaryPath", required=False,
                     help="the test binary location")
     ap.add_argument("-entryfuncName", "--entryfuncName", required=False, default="RIVERTestOneInput",
                     help="the name of the entry function you want to start the test from. By default the function name is 'RIVERTestOneInput'!", type=str)
-    ap.add_argument("-arch", "--architecture", required=True,
+    ap.add_argument("-arch", "--architecture", required=False,
                     help="architecture of the executable: ARM32, ARM64, X86, X64 are supported")
-    ap.add_argument("-max", "--maxLen", required=True,
+    ap.add_argument("-max", "--maxLen", required=False,
                     help="maximum size of input length", type=int)
     ap.add_argument("-targetAddress", "--targetAddress", required=False, default=None,
                     help="the target address that your program is trying to reach", type=str)
@@ -41,6 +42,10 @@ def parseArgs():
     #ap.add_argument("-defaultObsParams", "--defaultObsParams", required=False, default=False,
     #                help="Default Observation parameters - should be a binary string mapping in order the values from default self.observation_space", type=str)
 
+    args = ap.parse_args()
+
+    with open("/home/ubuntu/Desktop/arguments.json", 'r') as f:
+        ap.set_defaults(**json.load(f))
     args = ap.parse_args()
 
     loggingLevel = logging._nameToLevel[args.logLevel]
@@ -314,16 +319,17 @@ def processSeedDict(seedsDict : List[any]):
 
 
 def riverExp():
-    import gym
-    from gym import spaces
+    pass
+    # import gym
+    # from gym import spaces
 
-    obs = {'inputBuffer' : spaces.Box(0, 255, shape=(4096, )),
-           'inputLen' : spaces.Discrete(4096)}
+    # obs = {'inputBuffer' : spaces.Box(0, 255, shape=(4096, )),
+    #        'inputLen' : spaces.Discrete(4096)}
 
 
 
-    x = obs['inputLen'].sample()
-    print(obs['inputLen'].n)
+    # x = obs['inputLen'].sample()
+    # print(obs['inputLen'].n)
 
 if __name__ == "__main__":
     riverExp()
