@@ -9,6 +9,7 @@ import array
 import string
 import pdb
 import gdb 
+import numpy
 
 from bitstring import BitArray
 
@@ -73,31 +74,39 @@ class RiverTracer:
 	# Returns a tuple (true if the optional target address was reached, num new basic blocks found - if countBBlocks is True)
 	# AND the path of basic block addresses found in this run
 	def __emulate(self, pc: int, countBBlocks: bool):
+		global BASE_EXEC
+		global END_EXEC
 		targetAddressFound = False
 		currentBBlockAddr = pc  # The basic block address that we started to analyze currently
 		numNewBasicBlocks = 0  # The number of new basic blocks found by this function (only if countBBlocks was activated)
 		newBasicBlocksFound = set()
 		basicBlocksPathFoundThisRun = []
 		
+		def castGDBValue(value):
+			if int(value) < 0:
+				value = int(value) + (1 << 64)
+			return int(value)
+
 		def restoreContext():
-			Triton.setConcreteRegisterValue(Triton.registers.rax, int((gdb.parse_and_eval('$rax'))))
-			Triton.setConcreteRegisterValue(Triton.registers.rbx, int((gdb.parse_and_eval('$rbx'))))
-			Triton.setConcreteRegisterValue(Triton.registers.rcx, int((gdb.parse_and_eval('$rcx'))))
-			Triton.setConcreteRegisterValue(Triton.registers.rdx, int((gdb.parse_and_eval('$rdx'))))
-			Triton.setConcreteRegisterValue(Triton.registers.rsp, int(gdb.parse_and_eval('$rsp')))
-			Triton.setConcreteRegisterValue(Triton.registers.rbp, int(gdb.parse_and_eval('$rbp')))
-			Triton.setConcreteRegisterValue(Triton.registers.rdi, int(gdb.parse_and_eval('$rdi')))
-			Triton.setConcreteRegisterValue(Triton.registers.rsi, int(gdb.parse_and_eval('$rsi')))
-			Triton.setConcreteRegisterValue(Triton.registers.r8, int(gdb.parse_and_eval('$r8')))
-			Triton.setConcreteRegisterValue(Triton.registers.r9, int(gdb.parse_and_eval('$r9')))
-			Triton.setConcreteRegisterValue(Triton.registers.r10, int(gdb.parse_and_eval('$r10')))
-			Triton.setConcreteRegisterValue(Triton.registers.r11, int(gdb.parse_and_eval('$r11')))
-			Triton.setConcreteRegisterValue(Triton.registers.r12, int(gdb.parse_and_eval('$r12')))
-			Triton.setConcreteRegisterValue(Triton.registers.r13, int(gdb.parse_and_eval('$r13')))
-			Triton.setConcreteRegisterValue(Triton.registers.r14, int(gdb.parse_and_eval('$r14')))
-			Triton.setConcreteRegisterValue(Triton.registers.r15, int(gdb.parse_and_eval('$r15')))
-			Triton.setConcreteRegisterValue(Triton.registers.rip, int(gdb.parse_and_eval('$rip')))
-			Triton.setConcreteRegisterValue(Triton.registers.eflags, int(gdb.parse_and_eval('$eflags')))
+			print("TYPE : " + str((gdb.parse_and_eval('$rax')).type))
+			self.context.setConcreteRegisterValue(self.context.registers.rax, castGDBValue((gdb.parse_and_eval('$rax'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rbx, castGDBValue((gdb.parse_and_eval('$rbx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rcx, castGDBValue((gdb.parse_and_eval('$rcx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rdx, castGDBValue((gdb.parse_and_eval('$rdx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rsp, castGDBValue(gdb.parse_and_eval('$rsp')))
+			self.context.setConcreteRegisterValue(self.context.registers.rbp, castGDBValue((gdb.parse_and_eval('$rbp'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rdi, castGDBValue((gdb.parse_and_eval('$rdi'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rsi, castGDBValue((gdb.parse_and_eval('$rsi'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r8, castGDBValue((gdb.parse_and_eval('$r8'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r9, castGDBValue((gdb.parse_and_eval('$r9'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r10, castGDBValue((gdb.parse_and_eval('$r10'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r11, castGDBValue((gdb.parse_and_eval('$r11'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r12, castGDBValue((gdb.parse_and_eval('$r12'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r13, castGDBValue((gdb.parse_and_eval('$r13'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r14, castGDBValue((gdb.parse_and_eval('$r14'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r15, castGDBValue((gdb.parse_and_eval('$r15'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rip, castGDBValue((gdb.parse_and_eval('$rip'))))
+			self.context.setConcreteRegisterValue(self.context.registers.eflags, int(gdb.parse_and_eval('$eflags')))
 
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
@@ -128,6 +137,7 @@ class RiverTracer:
 			instruction.setAddress(pc)
 
 			# Process
+			print("Instruction: " + str(instruction) + " : " + hex(gdb.parse_and_eval('$rip')))
 			self.context.processing(instruction)
 			logging.info(instruction)
 
@@ -137,18 +147,19 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
 
-			if ((pc >= END_EXEC or pc <= BASE_EXEC)):
-				gdb.execute("next")
-
-				if gdb.selected_inferior().pid == 0:
-					break
-
-				pc = (int(gdb.parse_and_eval('$rip')))
+			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
+			print("pc :  BASE_EXEC : END_EXEC => " + hex(pc) + " : " + hex(BASE_EXEC) + " : " + hex(END_EXEC))
+			b = (pc >= END_EXEC or pc <= BASE_EXEC)
+			print("Bool : "  + str(	b))
+			if ((gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC)):
+				pc = gdb_pc
+				# b = (pc >= END_EXEC or pc <= BASE_EXEC)
+				# print("Bool : "  + str(	b))
 				while (pc >= END_EXEC or pc <= BASE_EXEC):
 					gdb.execute("next")
 					if gdb.selected_inferior().pid == 0:
 						break
-					pc = (int(gdb.parse_and_eval('$rip')))
+					pc = (castGDBValue(gdb.parse_and_eval('$rip')))
 
 				if gdb.selected_inferior().pid == 0:
 					break
@@ -311,6 +322,7 @@ class RiverTracer:
 			SIZE += int(exec_mapping[i][2], 0)
 
 		BASE_EXEC = int(exec_mapping[0][0].replace('\'',''), 0)
+		print("BASE : " + hex(BASE_EXEC))
 		END_EXEC = BASE_EXEC + SIZE
 		logging.info(f"Loading the binary at path {binaryPath}..")
 		import lief
@@ -341,7 +353,7 @@ class RiverTracer:
 			phdrs = binary.segments
 			for phdr in phdrs:
 				size = phdr.physical_size
-				vaddr = phdr.virtual_address
+				vaddr = BASE_EXEC + phdr.virtual_address
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
 				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, phdr.content)
 				#assert False, "Check where is stack and heap and reset them "
@@ -360,14 +372,14 @@ class RiverTracer:
 		# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc9613b2000)
 		# /lib64/ld-linux-x86-64.so.2 (0x00007fc96212d000)
 
-		libc = lief.parse("/usr/lib/x86_64-linux-gnu/libc.so.6")
+		# libc = lief.parse("/usr/lib/x86_64-linux-gnu/libc.so.6")
 
-		phdrs  = libc.segments
-		for phdr in phdrs:
-			size = phdr.physical_size
-			vaddr  = BASE_EXEC + phdr.virtual_address
-			print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-			tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
+		# phdrs  = libc.segments
+		# for phdr in phdrs:
+		# 	size = phdr.physical_size
+		# 	vaddr  = BASE_EXEC + phdr.virtual_address
+		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
+		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
 
 		# phdrs  = libstdc.segments
 		# for phdr in phdrs:
@@ -397,22 +409,22 @@ class RiverTracer:
 		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
 		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
 
-		let_bind = [
-			"printf",
-			"dprintf",
-			"strlen",
-			"vprintf",
-			"psiginfo",
-			"strchrnul",
-			"strchr",
-			"j_strchrnul"
-		]
+		# let_bind = [
+		# 	"printf",
+		# 	"dprintf",
+		# 	"strlen",
+		# 	"vprintf",
+		# 	"psiginfo",
+		# 	"strchrnul",
+		# 	"strchr",
+		# 	"j_strchrnul"
+		# ]
 
 		# relocations = []
 		# for rel in binary.relocations:
 			# relocations.append(rel)
-		relocations = [x for x in binary.pltgot_relocations]
-		relocations.extend([x for x in binary.dynamic_relocations])
+		# relocations = [x for x in binary.pltgot_relocations]
+		# relocations.extend([x for x in binary.dynamic_relocations])
 
 		# for rel in [x for x in libc.pltgot_relocations]:
 		# 	if rel.has_symbol:
@@ -421,19 +433,19 @@ class RiverTracer:
 		# 		print(rel.type)
 		# relocations.extend([x for x in libc.dynamic_relocations])
 		# Perform our own relocations
-		for rel in relocations:
-			symbolName = rel.symbol.name
-			symbolRelo = rel.address
-			if symbolName in let_bind:
-				print(f"Hooking {symbolName}")
-				libc_sym_addr = libc.get_symbol(symbolName).value
-				print(f"name {symbolName} addr {hex(libc_sym_addr)} res {hex(BASE_LIBC + libc_sym_addr)}")
-				tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), BASE_LIBC + libc_sym_addr)
-			else:
-				for crel in customRelocation:
-					if symbolName == crel[0]:
-						print('[+] Hooking %s' %(symbolName))
-						tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), crel[2])
+		# for rel in relocations:
+		# 	symbolName = rel.symbol.name
+		# 	symbolRelo = rel.address
+		# 	if symbolName in let_bind:
+		# 		print(f"Hooking {symbolName}")
+		# 		libc_sym_addr = libc.get_symbol(symbolName).value
+		# 		print(f"name {symbolName} addr {hex(libc_sym_addr)} res {hex(BASE_EXEC + libc_sym_addr)}")
+		# 		tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), BASE_LIBC + libc_sym_addr)
+		# 	else:
+		# 		for crel in customRelocation:
+		# 			if symbolName == crel[0]:
+		# 				print('[+] Hooking %s' %(symbolName))
+		# 				tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), crel[2])
 		return
 
 	def hookingHandler(self, pc):
