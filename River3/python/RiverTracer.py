@@ -17,6 +17,29 @@ from bitstring import BitArray
 # Where the input buffer will reside in the emulated program
 INPUT_BUFFER_ADDRESS = 0x10000000
 
+class GdbPage:
+	def __init__(self, startAddr, endAddr, size, offset):
+		self.__startAddr = startAddr
+		self.__endAddr = endAddr
+		self.__size = size
+		self.__offset = offset
+
+	def getStartAddr(self):
+		return self.__startAddr
+
+	def getEndAddr(self):
+		return self.__endAddr
+
+	def getSize(self):
+		return self.__size
+
+	def getOffset(self):
+		return self.__offset
+
+	def __repr__(self):
+		return "start address: {}\n end address: {}\n size: {}\n offset: {}\n" \
+			.format(hex(self.__startAddr), \
+			hex(self.__endAddr), hex(self.__size), hex(self.__offset)) 
 
 class RiverTracer:
 	# Creates the tracer either with symbolic execution enabled or not
@@ -106,7 +129,7 @@ class RiverTracer:
 			self.context.setConcreteRegisterValue(self.context.registers.r14, castGDBValue((gdb.parse_and_eval('$r14'))))
 			self.context.setConcreteRegisterValue(self.context.registers.r15, castGDBValue((gdb.parse_and_eval('$r15'))))
 			self.context.setConcreteRegisterValue(self.context.registers.rip, castGDBValue((gdb.parse_and_eval('$rip'))))
-			self.context.setConcreteRegisterValue(self.context.registers.eflags, int(gdb.parse_and_eval('$eflags')))
+			self.context.setConcreteRegisterValue(self.context.registers.eflags, castGDBValue(gdb.parse_and_eval('$eflags')))
 
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
@@ -127,6 +150,24 @@ class RiverTracer:
 		# pdb.set_trace()
 		# while pc and (pc >= self.codeSection_begin and pc <= self.codeSection_end):
 		# pdb.set_trace()
+		gdb_pc = (castGDBValue(gdb.parse_and_eval('$rip')))
+		while pc < gdb_pc:
+			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
+
+			# Create the ctx instruction
+			instruction = Instruction()
+			instruction.setOpcode(opcode)
+			instruction.setAddress(pc)
+
+			self.context.processing(instruction)
+			logging.info(instruction)
+
+			self.hookingHandler(pc)
+
+			# Next
+			prevpc = pc
+			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
+
 		while pc:
 			# Fetch opcode
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
@@ -138,6 +179,7 @@ class RiverTracer:
 
 			# Process
 			print("Instruction: " + str(instruction) + " : " + hex(gdb.parse_and_eval('$rip')))
+			# print(seltdissasembly(instruction))
 			self.context.processing(instruction)
 			logging.info(instruction)
 
@@ -147,14 +189,21 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
 
+			# ma folosesc si de contorul din gdb pentru ca Triton nu vede daca condul o ia pe aratura
+			
 			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
 			print("pc :  BASE_EXEC : END_EXEC => " + hex(pc) + " : " + hex(BASE_EXEC) + " : " + hex(END_EXEC))
 			b = (pc >= END_EXEC or pc <= BASE_EXEC)
 			print("Bool : "  + str(	b))
-			if ((gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC)):
+			
+			# if-ul asta se poate scrie mai frumos. E ceva cod duplicat.
+			if (not (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC)):
+				gdb.execute("stepi")
+				restoreContext()
+
+			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
+			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
 				pc = gdb_pc
-				# b = (pc >= END_EXEC or pc <= BASE_EXEC)
-				# print("Bool : "  + str(	b))
 				while (pc >= END_EXEC or pc <= BASE_EXEC):
 					gdb.execute("next")
 					if gdb.selected_inferior().pid == 0:
@@ -163,10 +212,6 @@ class RiverTracer:
 
 				if gdb.selected_inferior().pid == 0:
 					break
-				restoreContext()
-
-			else:
-				gdb.execute("stepi")
 				restoreContext()
 
 			if instruction.isControlFlow():
@@ -305,11 +350,39 @@ class RiverTracer:
 		global BASE_EXEC
 		global END_EXEC
 		global SIZE
+		global IS_NORMAL
 		
+		def createPage(page):
+			if len(page) == 4:
+				return GdbPage(int(page[0].replace('\'',''), 0), \
+							   int(page[1].replace('\'',''), 0), \
+							   int(page[2].replace('\'',''), 0), \
+							   int(page[3].replace('\'',''), 0)), "none"
+			elif len(page) == 5:
+				return GdbPage(int(page[0].replace('\'',''), 0), \
+							   int(page[1].replace('\'',''), 0), \
+							   int(page[2].replace('\'',''), 0), \
+							   int(page[3].replace('\'',''), 0)), str(page[4])
+
+		def createMemoryDict():
+			memory = {}
+			info_mappings = gdb.execute("info proc mappings", False, True)
+			info_mappings = info_mappings.split('\n')
+			# se pastreaza tot fara header si ultimul element care este None
+			info_mappings = [x.split() for x in info_mappings[4:-1]]
+
+			for elem in info_mappings:
+				page, name = createPage(elem)
+				if name not in memory:
+					memory[name] = []
+				memory[name].append(page)
+
+			return memory
+
 		outEntryFuncAddr = None
-		gdb.execute("set args elite")
+		gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
 		gdb.execute("start");
-	
+
 		info_exec = gdb.execute("info proc exe", False, True)
 		info_mappings = gdb.execute("info proc mappings", False, True)
 		name_exec = info_exec.split("exe = ")[1]
@@ -345,15 +418,24 @@ class RiverTracer:
 					break
 		assert outEntryFuncAddr != None, "Exported function wasn't found"
 
+		print(hex(outEntryFuncAddr))
+		print(hex(outEntryFuncAddr + BASE_EXEC))
+		if hex(outEntryFuncAddr) < hex(BASE_EXEC):
+			outEntryFuncAddr = outEntryFuncAddr + BASE_EXEC
+		else:
+			IS_NORMAL = False
+
 		for tracerIndex, tracer in enumerate(tracersInstances):
-			tracersInstances[tracerIndex].entryFuncAddr = outEntryFuncAddr + BASE_EXEC
+			tracersInstances[tracerIndex].entryFuncAddr = outEntryFuncAddr
 			tracersInstances[tracerIndex].codeSection_begin = codeSection_begin
 			tracersInstances[tracerIndex].codeSection_end = codeSection_end
 
 			phdrs = binary.segments
 			for phdr in phdrs:
 				size = phdr.physical_size
-				vaddr = BASE_EXEC + phdr.virtual_address
+				vaddr = phdr.virtual_address
+				if IS_NORMAL:
+					vaddr += BASE_EXEC
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
 				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, phdr.content)
 				#assert False, "Check where is stack and heap and reset them "
@@ -650,6 +732,7 @@ BASE_ALLOC = 0x30000000
 BASE_EXEC = 0
 END_EXEC = 0
 SIZE = 0
+IS_NORMAL = True
 
 BASE_STACK = 0x9fffffff
 

@@ -44,7 +44,7 @@ def parseArgs():
 
     args = ap.parse_args()
 
-    with open("/home/ubuntu/Desktop/arguments.json", 'r') as f:
+    with open("/home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/arguments.json", 'r') as f:
         ap.set_defaults(**json.load(f))
     args = ap.parse_args()
 
