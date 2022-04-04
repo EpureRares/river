@@ -19,7 +19,6 @@ static uint8_t inputBuf[kMaxInputSize];
 int main(int argc, char** argv)
 {
     int fd1;
-
     if (LLVMFuzzerInitialize)
         LLVMFuzzerInitialize(&argc, &argv);
 

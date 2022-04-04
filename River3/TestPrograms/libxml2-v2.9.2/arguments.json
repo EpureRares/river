@@ -1,5 +1,5 @@
 {
-	"binaryPath": "../../ExternalTools/Triton/src/examples/python/samples/example",
+	"binaryPath": "/home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/out/xml",
 	"entryfuncName": "main",
 	"architecture": "x64",
 	"maxLen" : 5,

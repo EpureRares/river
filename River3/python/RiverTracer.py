@@ -5,11 +5,14 @@ from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 import logging
 import pdb
 import os
+import re
+import sys
 import array
 import string
 import pdb
 import gdb 
 import numpy
+import time
 
 from bitstring import BitArray
 
@@ -99,12 +102,63 @@ class RiverTracer:
 	def __emulate(self, pc: int, countBBlocks: bool):
 		global BASE_EXEC
 		global END_EXEC
+		global NAME_EXEC
+		global MAPPINGS
+
 		targetAddressFound = False
 		currentBBlockAddr = pc  # The basic block address that we started to analyze currently
 		numNewBasicBlocks = 0  # The number of new basic blocks found by this function (only if countBBlocks was activated)
 		newBasicBlocksFound = set()
 		basicBlocksPathFoundThisRun = []
-		
+
+		def createPage(page):
+			if len(page) == 4:
+				return GdbPage(int(page[0].replace('\'',''), 0), \
+							   int(page[1].replace('\'',''), 0), \
+							   int(page[2].replace('\'',''), 0), \
+							   int(page[3].replace('\'',''), 0)), "none"
+			elif len(page) == 5:
+				return GdbPage(int(page[0].replace('\'',''), 0), \
+							   int(page[1].replace('\'',''), 0), \
+							   int(page[2].replace('\'',''), 0), \
+							   int(page[3].replace('\'',''), 0)), str(page[4])
+
+		def createMemoryDict():
+			memory = {}
+			info_mappings = gdb.execute("info proc mappings", False, True)
+			info_mappings = info_mappings.split('\n')
+			# se pastreaza tot fara header si ultimul element care este None
+			info_mappings = [x.split() for x in info_mappings[4:-1]]
+
+			for elem in info_mappings:
+				page, name = createPage(elem)
+				if name not in memory:
+					memory[name] = []
+				memory[name].append(page)
+
+			return memory
+
+		def updateMemory(memory, name_exec):
+			update_memory = []
+
+			for key in memory:
+				if key == name_exec or key == "[stack]" or key == "[heap]":
+					update_memory.extend(memory[key])
+	
+			for page in update_memory:
+				startAddr = page.getStartAddr()
+				size = int(page.getSize() / 4)
+				examine_command = "x/" + str(size) + "uw " + str(hex(startAddr))
+				addresses = gdb.execute(examine_command, False, True)
+				addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
+				# print(addresses)
+				addresses = [int(elem).to_bytes(4, byteorder='little') for elem in addresses if ":" not in elem]
+				
+				for s in addresses:
+					self.context.setConcreteMemoryAreaValue(startAddr, s)
+					startAddr += 4
+
+
 		def castGDBValue(value):
 			if int(value) < 0:
 				value = int(value) + (1 << 64)
@@ -179,7 +233,6 @@ class RiverTracer:
 
 			# Process
 			print("Instruction: " + str(instruction) + " : " + hex(gdb.parse_and_eval('$rip')))
-			# print(seltdissasembly(instruction))
 			self.context.processing(instruction)
 			logging.info(instruction)
 
@@ -189,7 +242,7 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
 
-			# ma folosesc si de contorul din gdb pentru ca Triton nu vede daca condul o ia pe aratura
+			# ma folosesc si de contorul din gdb pentru ca Triton nu vede daca codul o ia pe aratura
 			
 			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
 			print("pc :  BASE_EXEC : END_EXEC => " + hex(pc) + " : " + hex(BASE_EXEC) + " : " + hex(END_EXEC))
@@ -205,14 +258,21 @@ class RiverTracer:
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
 				pc = gdb_pc
 				while (pc >= END_EXEC or pc <= BASE_EXEC):
-					gdb.execute("next")
+					try:
+						gdb.execute("next")
+					except gdb.error:
+						gdb.execute("finish")
+					
 					if gdb.selected_inferior().pid == 0:
 						break
 					pc = (castGDBValue(gdb.parse_and_eval('$rip')))
+						# while gdb.selected_thread().is_running():
+							# print(gdb.selected_thread().is_running())
 
 				if gdb.selected_inferior().pid == 0:
 					break
 				restoreContext()
+				updateMemory(MAPPINGS, NAME_EXEC)
 
 			if instruction.isControlFlow():
 				currentBBlockAddr = pc
@@ -351,6 +411,8 @@ class RiverTracer:
 		global END_EXEC
 		global SIZE
 		global IS_NORMAL
+		global MAPPINGS
+		global NAME_EXEC
 		
 		def createPage(page):
 			if len(page) == 4:
@@ -380,21 +442,20 @@ class RiverTracer:
 			return memory
 
 		outEntryFuncAddr = None
-		gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
+		# gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
+		# gdb.execute("set args elite")
 		gdb.execute("start");
 
+		MAPPINGS = createMemoryDict()
+
 		info_exec = gdb.execute("info proc exe", False, True)
-		info_mappings = gdb.execute("info proc mappings", False, True)
-		name_exec = info_exec.split("exe = ")[1]
-		name_exec = name_exec.split('\n')[0].replace('\'', '')
-		info_mappings = info_mappings.split('\n')
-		info_mappings = [x.split() for x in info_mappings[4:]]
-		exec_mapping = [x for x in info_mappings for y in x if name_exec == y]
+		NAME_EXEC = (info_exec.split("exe = ")[1]).split('\n')[0].replace('\'', '')
+		exec_mapping = MAPPINGS[NAME_EXEC]
 
 		for i in range(len(exec_mapping)):
-			SIZE += int(exec_mapping[i][2], 0)
+			SIZE += exec_mapping[i].getSize()
 
-		BASE_EXEC = int(exec_mapping[0][0].replace('\'',''), 0)
+		BASE_EXEC = exec_mapping[0].getStartAddr()
 		print("BASE : " + hex(BASE_EXEC))
 		END_EXEC = BASE_EXEC + SIZE
 		logging.info(f"Loading the binary at path {binaryPath}..")
@@ -733,6 +794,9 @@ BASE_EXEC = 0
 END_EXEC = 0
 SIZE = 0
 IS_NORMAL = True
+
+MAPPINGS = {}
+NAME_EXEC = None
 
 BASE_STACK = 0x9fffffff
 
