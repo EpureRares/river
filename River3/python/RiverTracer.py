@@ -20,6 +20,13 @@ from bitstring import BitArray
 # Where the input buffer will reside in the emulated program
 INPUT_BUFFER_ADDRESS = 0x10000000
 
+class Executor:
+	def __init__(self, cmd):
+		self.__cmd = cmd
+
+	def __call__(self):
+		gdb.execute(self.__cmd)
+
 class GdbPage:
 	def __init__(self, startAddr, endAddr, size, offset):
 		self.__startAddr = startAddr
@@ -257,17 +264,20 @@ class RiverTracer:
 			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
 				pc = gdb_pc
-				while (pc >= END_EXEC or pc <= BASE_EXEC):
-					try:
+
+
+				if gdb.block_for_pc(pc) is None:
+					print("Finish " + str(hex(pc)), file=sys.stderr)
+					gdb.execute("finish")
+				else:
+					print("Finish NEXT " + str(hex(pc)), file=sys.stderr)
+					while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
 						gdb.execute("next")
-					except gdb.error:
-						gdb.execute("finish")
 					
 					if gdb.selected_inferior().pid == 0:
 						break
 					pc = (castGDBValue(gdb.parse_and_eval('$rip')))
-						# while gdb.selected_thread().is_running():
-							# print(gdb.selected_thread().is_running())
+
 
 				if gdb.selected_inferior().pid == 0:
 					break
@@ -444,7 +454,9 @@ class RiverTracer:
 		outEntryFuncAddr = None
 		# gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
 		# gdb.execute("set args elite")
-		gdb.execute("start");
+		gdb.execute("start")
+
+		# gdb.execute("set scheduler-locking on")
 
 		MAPPINGS = createMemoryDict()
 
