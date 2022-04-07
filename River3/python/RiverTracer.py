@@ -158,7 +158,6 @@ class RiverTracer:
 				examine_command = "x/" + str(size) + "uw " + str(hex(startAddr))
 				addresses = gdb.execute(examine_command, False, True)
 				addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
-				# print(addresses)
 				addresses = [int(elem).to_bytes(4, byteorder='little') for elem in addresses if ":" not in elem]
 				
 				for s in addresses:
@@ -238,6 +237,12 @@ class RiverTracer:
 			instruction.setOpcode(opcode)
 			instruction.setAddress(pc)
 
+			if instruction.isControlFlow():
+				currentBBlockAddr = pc
+				onBasicBlockFound(currentBBlockAddr)
+				print(instruction)
+				print(instruction.getOperands())
+
 			# Process
 			print("Instruction: " + str(instruction) + " : " + hex(gdb.parse_and_eval('$rip')))
 			self.context.processing(instruction)
@@ -260,23 +265,31 @@ class RiverTracer:
 			if (not (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC)):
 				gdb.execute("stepi")
 				restoreContext()
+				gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
+				# assert pc == gdb_pc, "PC and GDB_PC are different"
 
-			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
 				pc = gdb_pc
 
-
-				if gdb.block_for_pc(pc) is None:
-					print("Finish " + str(hex(pc)), file=sys.stderr)
+				while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
 					gdb.execute("finish")
-				else:
-					print("Finish NEXT " + str(hex(pc)), file=sys.stderr)
-					while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
-						gdb.execute("next")
-					
+				
 					if gdb.selected_inferior().pid == 0:
 						break
 					pc = (castGDBValue(gdb.parse_and_eval('$rip')))
+
+				#if gdb.block_for_pc(pc) is None:
+				#	print("Finish " + str(hex(pc)), file=sys.stderr)
+				#	gdb.execute("finish")
+				#	pc = (castGDBValue(gdb.parse_and_eval('$rip')))
+				#else:
+				#	print("Finish NEXT " + str(hex(pc)), file=sys.stderr)
+				#	while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
+				#		gdb.execute("next")
+				#	
+				#		if gdb.selected_inferior().pid == 0:
+				#			break
+				#		pc = (castGDBValue(gdb.parse_and_eval('$rip')))
 
 
 				if gdb.selected_inferior().pid == 0:
@@ -284,11 +297,7 @@ class RiverTracer:
 				restoreContext()
 				updateMemory(MAPPINGS, NAME_EXEC)
 
-			if instruction.isControlFlow():
-				currentBBlockAddr = pc
-				onBasicBlockFound(currentBBlockAddr)
-				print(instruction)
-				print(instruction.getOperands())
+			pc = (castGDBValue(gdb.parse_and_eval('$rip')))
 				
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
 				targetAddressFound = True
@@ -510,7 +519,7 @@ class RiverTracer:
 				if IS_NORMAL:
 					vaddr += BASE_EXEC
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
-				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, phdr.content)
+				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, bytes(phdr.content))
 				#assert False, "Check where is stack and heap and reset them "
 
 			RiverTracer.makeRelocation(binary, tracersInstances[tracerIndex].context)

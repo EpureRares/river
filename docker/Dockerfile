@@ -18,8 +18,13 @@ RUN sudo apt-get update && \
 RUN pip3 install setuptools --upgrade && \
     pip3 install capstone lief tensorflow
 
+#RUN pip3 install bitstring
+
+RUN sudo apt-get install -y gdb
+
 # Clone River and it's submodules
-RUN git clone --recursive https://github.com/AGAPIA/river.git
+#RUN git clone --recursive https://github.com/AGAPIA/river.git
+RUN git clone --recursive https://github.com/EpureRares/river.git
 
 # Build Triton from source and install it in the default paths
 # Will extract the path to where pip installes packages so it can tell Triton where to find libcapstone
@@ -33,6 +38,12 @@ RUN ["/bin/bash", "-c", "cd /home/circleci/river/River3/ExternalTools/Triton && 
     make -j2 && \
     sudo make install && \
     sudo ln -s ${PYTHON_PACKAGES}/capstone/lib/libcapstone.so ${PYTHON_PACKAGES}/capstone/lib/libcapstone.so.4"]
+
+RUN ["/bin/bash", "-c", "cd /home/circleci/river/River3/ExternalTools/Triton/build/src/libtriton/ && \
+    PYTHON_PACKAGES=$(pip3 show capstone | grep Location | cut -f 2 -d ' ') && \
+    sudo cp libtriton.so triton.so ${PYTHON_PACKAGES}"]
+
+RUN pip3 install bitstring
 
 # Run example test when container starts
 CMD cd /home/circleci/river/River3/TestPrograms && \

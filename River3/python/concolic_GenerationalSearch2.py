@@ -2,7 +2,11 @@
 from __future__ import print_function
 from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 import sys
-sys.path.append('/home/ubuntu/Desktop/licenta/river/River3/python')
+import os
+curr_path = os.getcwd()
+proj_root_idx = curr_path.find("/River3/")
+py_modules_path = curr_path[0 : proj_root_idx] + "/River3/python"
+sys.path.append(py_modules_path)
 import argparse
 import RiverUtils as RiverUtils
 from RiverTracer import RiverTracer
