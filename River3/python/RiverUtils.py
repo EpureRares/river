@@ -4,6 +4,7 @@ import numpy as np
 from triton import TritonContext
 import logging
 import argparse
+import os
 import json
 from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 
@@ -43,8 +44,12 @@ def parseArgs():
     #                help="Default Observation parameters - should be a binary string mapping in order the values from default self.observation_space", type=str)
 
     args = ap.parse_args()
+    
+    curr_path = os.getcwd()
+    proj_root_idx = curr_path.find("/River3/")
+    arguments_path = curr_path[0 : proj_root_idx] + "/River3/TestPrograms/libxml2-v2.9.2/arguments.json"
 
-    with open("/home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/arguments.json", 'r') as f:
+    with open(arguments_path, 'r') as f:
         ap.set_defaults(**json.load(f))
     args = ap.parse_args()
 

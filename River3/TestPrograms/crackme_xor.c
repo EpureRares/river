@@ -1,8 +1,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-char *serial = "\x31\x3e\x3d\x26\x31";
+char *serial="elite";
+static uint8_t inputBuf[20];
 
 void RIVERTestOneInput(char *ptr)
 {
@@ -25,12 +27,12 @@ int main(int ac, char **av)
 {
   int ret;
 
-  if (ac != 2)
-  {
-    printf("First param must be the string password");
-    return -1;
-  }
-
-  RIVERTestOneInput(av[1]);
+ // if (ac != 2)
+  //{
+    //printf("First param must be the string password");
+    //return -1;
+  //}
+  printf("Hello %s\n", inputBuf);
+  RIVERTestOneInput(inputBuf);
 }
 

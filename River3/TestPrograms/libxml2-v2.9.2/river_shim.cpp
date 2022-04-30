@@ -22,14 +22,14 @@ int main(int argc, char** argv)
     if (LLVMFuzzerInitialize)
         LLVMFuzzerInitialize(&argc, &argv);
 
-    while (1) {
-        printf("Here with %d\n", 42);
-        fd1 = open("out.txt", O_RDWR | O_CREAT, 0644);
-        dprintf(fd1, "Here %d\n", 42);
-
-        ssize_t n_read = read(0, inputBuf, kMaxInputSize);
-        write(1, inputBuf, n_read);
-        if (n_read > 0) {
+    //while (1) {
+        printf("Here with %s\n", inputBuf);
+        //fd1 = open("out.txt", O_RDWR | O_CREAT, 0644);
+        //dprintf(fd1, "Here %d\n", 42);
+	
+      //  ssize_t n_read = read(0, inputBuf, kMaxInputSize);
+        write(1, inputBuf, 4);
+       // if (n_read > 0) {
             ////char len[2] = {(char)inputBuf[0], 0};
             ////size_t river_in_len = (size_t) atoi(len);
             //size_t river_in_len = (size_t) inputBuf[0];
@@ -48,6 +48,6 @@ int main(int argc, char** argv)
             //std::cout << copy << " " << river_in_len << "\n";
             LLVMFuzzerTestOneInput(&inputBuf[1], river_in_len);
             //delete[] copy;
-        }
-    }
+        //}
+    //}
 }

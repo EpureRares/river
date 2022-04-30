@@ -46,6 +46,37 @@ class GdbPage:
 	def getOffset(self):
 		return self.__offset
 
+	@staticmethod
+	def createPage(page):
+		if len(page) == 4:
+			return GdbPage(int(page[0].replace('\'',''), 0), \
+						   int(page[1].replace('\'',''), 0), \
+						   int(page[2].replace('\'',''), 0), \
+						   int(page[3].replace('\'',''), 0)), "none"
+			
+		elif len(page) == 5:
+			return GdbPage(int(page[0].replace('\'',''), 0), \
+						   int(page[1].replace('\'',''), 0), \
+						   int(page[2].replace('\'',''), 0), \
+						   int(page[3].replace('\'',''), 0)), str(page[4])
+
+	@staticmethod
+	def createMemoryDict():
+		memory = {}
+		info_mappings = gdb.execute("info proc mappings", False, True)
+		info_mappings = info_mappings.split('\n')
+
+		# se pastreaza tot fara header si ultimul element care este None
+		info_mappings = [x.split() for x in info_mappings[4:-1]]
+
+		for elem in info_mappings:
+			page, name = GdbPage.createPage(elem)
+			if name not in memory:
+				memory[name] = []
+			memory[name].append(page)
+
+		return memory
+
 	def __repr__(self):
 		return "start address: {}\n end address: {}\n size: {}\n offset: {}\n" \
 			.format(hex(self.__startAddr), \
@@ -56,11 +87,14 @@ class RiverTracer:
 	# And with the given architecture
 	# if a targetToReach is used, then the emulation stops when the tracer gets to that address
 	def __init__(self, architecture, symbolized, maxInputSize, targetAddressToReach = None):
+		global INPUT_BUFFER_ADDRESS
 		self.context = TritonContext(architecture)
 		self.symbolized = symbolized
 		self.resetSymbolicMemoryAtEachRun = False # KEEP IT FALSE OR TELL CPADURARU WHY YOU DO OTHERWISE
 		self.maxInputSize = maxInputSize
 
+		INPUT_BUFFER_ADDRESS = self.castGDBValue(int((gdb.execute("p &inputBuf", False, True)).split(") ")[1].split(" <")[0], 0))
+		print(INPUT_BUFFER_ADDRESS)
 		if symbolized is False:
 			self.context.enableSymbolicEngine(False)
 		assert self.context.isSymbolicEngineEnabled() == symbolized
@@ -89,7 +123,6 @@ class RiverTracer:
 				self.symbolicVariablesCache[byteIndex] = symbolicVar
 
 		#self.debugShowAllSymbolicVariables()
-
 		assert self.resetSymbolicMemoryAtEachRun == True or len(self.symbolicVariablesCache) == inputMaxLenPlusSentinelSize
 
 
@@ -103,14 +136,20 @@ class RiverTracer:
 	def getAstContext(self):
 		return self.context.getAstContext()
 
+	def castGDBValue(self, value):
+		if int(value) < 0:
+			value = int(value) + (1 << 64)
+		return int(value)
+
 	# Given a context where to emulate the binary already setup in memory with its input, and the PC address to emulate from, plus a few parameters...
 	# Returns a tuple (true if the optional target address was reached, num new basic blocks found - if countBBlocks is True)
 	# AND the path of basic block addresses found in this run
-	def __emulate(self, pc: int, countBBlocks: bool):
+	def __emulate(self, pc: int, countBBlocks: bool, inputToTry: RiverUtils.Input):
 		global BASE_EXEC
 		global END_EXEC
 		global NAME_EXEC
 		global MAPPINGS
+		global INPUT_BUFFER_ADDRESS
 
 		targetAddressFound = False
 		currentBBlockAddr = pc  # The basic block address that we started to analyze currently
@@ -118,79 +157,51 @@ class RiverTracer:
 		newBasicBlocksFound = set()
 		basicBlocksPathFoundThisRun = []
 
-		def createPage(page):
-			if len(page) == 4:
-				return GdbPage(int(page[0].replace('\'',''), 0), \
-							   int(page[1].replace('\'',''), 0), \
-							   int(page[2].replace('\'',''), 0), \
-							   int(page[3].replace('\'',''), 0)), "none"
-			elif len(page) == 5:
-				return GdbPage(int(page[0].replace('\'',''), 0), \
-							   int(page[1].replace('\'',''), 0), \
-							   int(page[2].replace('\'',''), 0), \
-							   int(page[3].replace('\'',''), 0)), str(page[4])
-
-		def createMemoryDict():
-			memory = {}
-			info_mappings = gdb.execute("info proc mappings", False, True)
-			info_mappings = info_mappings.split('\n')
-			# se pastreaza tot fara header si ultimul element care este None
-			info_mappings = [x.split() for x in info_mappings[4:-1]]
-
-			for elem in info_mappings:
-				page, name = createPage(elem)
-				if name not in memory:
-					memory[name] = []
-				memory[name].append(page)
-
-			return memory
-
-		def updateMemory(memory, name_exec):
+		def updateMemory(memory, name_exec, inputToTry):
+			global INPUT_BUFFER_ADDRESS
 			update_memory = []
 
 			for key in memory:
-				if key == name_exec or key == "[stack]" or key == "[heap]":
+				if key == name_exec or key == "[stack]" or key == "[heap]" or key == "none":
 					update_memory.extend(memory[key])
 	
 			for page in update_memory:
 				startAddr = page.getStartAddr()
-				size = int(page.getSize() / 4)
-				examine_command = "x/" + str(size) + "uw " + str(hex(startAddr))
+				size = int(page.getSize() / 8)
+				examine_command = "x/" + str(size) + "ug " + str(hex(startAddr))
 				addresses = gdb.execute(examine_command, False, True)
 				addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
-				# print(addresses)
-				addresses = [int(elem).to_bytes(4, byteorder='little') for elem in addresses if ":" not in elem]
+
+				addresses = [int(elem).to_bytes(8, byteorder='little') for elem in addresses if ":" not in elem]
 				
 				for s in addresses:
 					self.context.setConcreteMemoryAreaValue(startAddr, s)
-					startAddr += 4
+					startAddr += 8
 
-
-		def castGDBValue(value):
-			if int(value) < 0:
-				value = int(value) + (1 << 64)
-			return int(value)
+			for byteIndex, value in inputToTry.buffer.items():
+				byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
+				print(str(value) + " == " + str(self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
+				assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
 
 		def restoreContext():
-			print("TYPE : " + str((gdb.parse_and_eval('$rax')).type))
-			self.context.setConcreteRegisterValue(self.context.registers.rax, castGDBValue((gdb.parse_and_eval('$rax'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rbx, castGDBValue((gdb.parse_and_eval('$rbx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rcx, castGDBValue((gdb.parse_and_eval('$rcx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rdx, castGDBValue((gdb.parse_and_eval('$rdx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rsp, castGDBValue(gdb.parse_and_eval('$rsp')))
-			self.context.setConcreteRegisterValue(self.context.registers.rbp, castGDBValue((gdb.parse_and_eval('$rbp'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rdi, castGDBValue((gdb.parse_and_eval('$rdi'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rsi, castGDBValue((gdb.parse_and_eval('$rsi'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r8, castGDBValue((gdb.parse_and_eval('$r8'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r9, castGDBValue((gdb.parse_and_eval('$r9'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r10, castGDBValue((gdb.parse_and_eval('$r10'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r11, castGDBValue((gdb.parse_and_eval('$r11'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r12, castGDBValue((gdb.parse_and_eval('$r12'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r13, castGDBValue((gdb.parse_and_eval('$r13'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r14, castGDBValue((gdb.parse_and_eval('$r14'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r15, castGDBValue((gdb.parse_and_eval('$r15'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rip, castGDBValue((gdb.parse_and_eval('$rip'))))
-			self.context.setConcreteRegisterValue(self.context.registers.eflags, castGDBValue(gdb.parse_and_eval('$eflags')))
+			self.context.setConcreteRegisterValue(self.context.registers.rax, self.castGDBValue((gdb.parse_and_eval('$rax'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rbx, self.castGDBValue((gdb.parse_and_eval('$rbx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rcx, self.castGDBValue((gdb.parse_and_eval('$rcx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rdx, self.castGDBValue((gdb.parse_and_eval('$rdx'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rsp, self.castGDBValue(gdb.parse_and_eval('$rsp')))
+			self.context.setConcreteRegisterValue(self.context.registers.rbp, self.castGDBValue((gdb.parse_and_eval('$rbp'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rdi, self.castGDBValue((gdb.parse_and_eval('$rdi'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rsi, self.castGDBValue((gdb.parse_and_eval('$rsi'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r8, self.castGDBValue((gdb.parse_and_eval('$r8'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r9, self.castGDBValue((gdb.parse_and_eval('$r9'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r10, self.castGDBValue((gdb.parse_and_eval('$r10'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r11, self.castGDBValue((gdb.parse_and_eval('$r11'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r12, self.castGDBValue((gdb.parse_and_eval('$r12'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r13, self.castGDBValue((gdb.parse_and_eval('$r13'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r14, self.castGDBValue((gdb.parse_and_eval('$r14'))))
+			self.context.setConcreteRegisterValue(self.context.registers.r15, self.castGDBValue((gdb.parse_and_eval('$r15'))))
+			self.context.setConcreteRegisterValue(self.context.registers.rip, self.castGDBValue((gdb.parse_and_eval('$rip'))))
+			self.context.setConcreteRegisterValue(self.context.registers.eflags, self.castGDBValue(gdb.parse_and_eval('$eflags')))
 
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
@@ -208,10 +219,24 @@ class RiverTracer:
 		onBasicBlockFound(currentBBlockAddr)
 
 		logging.info('[+] Starting emulation.')
-		# pdb.set_trace()
-		# while pc and (pc >= self.codeSection_begin and pc <= self.codeSection_end):
-		# pdb.set_trace()
-		gdb_pc = (castGDBValue(gdb.parse_and_eval('$rip')))
+
+		# command = "set {}{}={}".format("{" +"int"+ "}", "inputBuf",INPUT_BUFFER_ADDRESS)
+		# print(command)
+		# gdb.execute(command)
+
+		value = "{"
+		for (index, content) in inputToTry.buffer.items():
+			if index < len(inputToTry.buffer) - 1:
+				value += str(content) + ","
+			else:
+				value += str(content)
+
+		value += "}"
+		command = "set {}{}{} {}={}".format("{uint8_t[",len(inputToTry.buffer), "]}", "inputBuf", value)
+
+		gdb.execute(command)
+
+		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 		while pc < gdb_pc:
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
 
@@ -223,11 +248,9 @@ class RiverTracer:
 			self.context.processing(instruction)
 			logging.info(instruction)
 
-			self.hookingHandler(pc)
-
 			# Next
 			prevpc = pc
-			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
+			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
 
 		while pc:
 			# Fetch opcode
@@ -238,58 +261,46 @@ class RiverTracer:
 			instruction.setOpcode(opcode)
 			instruction.setAddress(pc)
 
+			print("[Before Constr]: "+ str(self.getLastRunPathConstraints()))
 			# Process
-			print("Instruction: " + str(instruction) + " : " + hex(gdb.parse_and_eval('$rip')))
 			self.context.processing(instruction)
 			logging.info(instruction)
-
-			self.hookingHandler(pc)
+			print("[After Constr]: "+ str(self.getLastRunPathConstraints()))
+			print("Is control flow instr: " + str(instruction.isControlFlow()))
+			if instruction.isControlFlow():
+				currentBBlockAddr = pc
+				onBasicBlockFound(currentBBlockAddr)
 
 			# Next
 			prevpc = pc
-			pc = self.context.getConcreteRegisterValue(self.context.registers.rip)
+			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
 
-			# ma folosesc si de contorul din gdb pentru ca Triton nu vede daca codul o ia pe aratura
+			gdb_pc = self.castGDBValue(gdb.parse_and_eval('$rip'))
 			
-			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
-			print("pc :  BASE_EXEC : END_EXEC => " + hex(pc) + " : " + hex(BASE_EXEC) + " : " + hex(END_EXEC))
-			b = (pc >= END_EXEC or pc <= BASE_EXEC)
-			print("Bool : "  + str(	b))
-			
-			# if-ul asta se poate scrie mai frumos. E ceva cod duplicat.
 			if (not (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC)):
 				gdb.execute("stepi")
+				if gdb.selected_inferior().pid == 0:
+					break
 				restoreContext()
+				gdb_pc = self.castGDBValue(gdb.parse_and_eval('$rip'))
 
-			gdb_pc = castGDBValue(gdb.parse_and_eval('$rip'))
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
 				pc = gdb_pc
 
-
-				if gdb.block_for_pc(pc) is None:
-					print("Finish " + str(hex(pc)), file=sys.stderr)
+				while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
 					gdb.execute("finish")
-				else:
-					print("Finish NEXT " + str(hex(pc)), file=sys.stderr)
-					while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
-						gdb.execute("next")
-					
+				
 					if gdb.selected_inferior().pid == 0:
 						break
-					pc = (castGDBValue(gdb.parse_and_eval('$rip')))
-
+					pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 
 				if gdb.selected_inferior().pid == 0:
 					break
 				restoreContext()
-				updateMemory(MAPPINGS, NAME_EXEC)
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
 
-			if instruction.isControlFlow():
-				currentBBlockAddr = pc
-				onBasicBlockFound(currentBBlockAddr)
-				print(instruction)
-				print(instruction.getOperands())
-				
+			pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
+			
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
 				targetAddressFound = True
 
@@ -323,6 +334,7 @@ class RiverTracer:
 
 		# Byte level
 		def symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized):
+			global INPUT_BUFFER_ADDRESS
 			byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
 
 			if symbolized:
@@ -389,7 +401,7 @@ class RiverTracer:
 		self.__initContext(inputToTry, symbolized=symbolized)
 
 		# Emulate the binary with the setup memory
-		return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks)
+		return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry)
 
 	def getLastRunPathConstraints(self):
 		return self.context.getPathConstraints()
@@ -423,42 +435,11 @@ class RiverTracer:
 		global IS_NORMAL
 		global MAPPINGS
 		global NAME_EXEC
-		
-		def createPage(page):
-			if len(page) == 4:
-				return GdbPage(int(page[0].replace('\'',''), 0), \
-							   int(page[1].replace('\'',''), 0), \
-							   int(page[2].replace('\'',''), 0), \
-							   int(page[3].replace('\'',''), 0)), "none"
-			elif len(page) == 5:
-				return GdbPage(int(page[0].replace('\'',''), 0), \
-							   int(page[1].replace('\'',''), 0), \
-							   int(page[2].replace('\'',''), 0), \
-							   int(page[3].replace('\'',''), 0)), str(page[4])
-
-		def createMemoryDict():
-			memory = {}
-			info_mappings = gdb.execute("info proc mappings", False, True)
-			info_mappings = info_mappings.split('\n')
-			# se pastreaza tot fara header si ultimul element care este None
-			info_mappings = [x.split() for x in info_mappings[4:-1]]
-
-			for elem in info_mappings:
-				page, name = createPage(elem)
-				if name not in memory:
-					memory[name] = []
-				memory[name].append(page)
-
-			return memory
 
 		outEntryFuncAddr = None
 		# gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
-		# gdb.execute("set args elite")
-		gdb.execute("start")
 
-		# gdb.execute("set scheduler-locking on")
-
-		MAPPINGS = createMemoryDict()
+		MAPPINGS = GdbPage.createMemoryDict()
 
 		info_exec = gdb.execute("info proc exe", False, True)
 		NAME_EXEC = (info_exec.split("exe = ")[1]).split('\n')[0].replace('\'', '')
@@ -468,7 +449,6 @@ class RiverTracer:
 			SIZE += exec_mapping[i].getSize()
 
 		BASE_EXEC = exec_mapping[0].getStartAddr()
-		print("BASE : " + hex(BASE_EXEC))
 		END_EXEC = BASE_EXEC + SIZE
 		logging.info(f"Loading the binary at path {binaryPath}..")
 		import lief
@@ -491,8 +471,6 @@ class RiverTracer:
 					break
 		assert outEntryFuncAddr != None, "Exported function wasn't found"
 
-		print(hex(outEntryFuncAddr))
-		print(hex(outEntryFuncAddr + BASE_EXEC))
 		if hex(outEntryFuncAddr) < hex(BASE_EXEC):
 			outEntryFuncAddr = outEntryFuncAddr + BASE_EXEC
 		else:
@@ -510,97 +488,13 @@ class RiverTracer:
 				if IS_NORMAL:
 					vaddr += BASE_EXEC
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
-				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, phdr.content)
+				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, bytes(phdr.content))
 				#assert False, "Check where is stack and heap and reset them "
 
 			RiverTracer.makeRelocation(binary, tracersInstances[tracerIndex].context)
 
 	@staticmethod
 	def makeRelocation(binary, tritonContext):
-		import lief
-		global BASE_EXEC
-		# ldd <binary>
-		# linux-vdso.so.1 (0x00007ffe3a524000)
-		# libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fc961d59000)
-		# libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fc9619bb000)
-		# libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fc9617a3000)
-		# libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fc9613b2000)
-		# /lib64/ld-linux-x86-64.so.2 (0x00007fc96212d000)
-
-		# libc = lief.parse("/usr/lib/x86_64-linux-gnu/libc.so.6")
-
-		# phdrs  = libc.segments
-		# for phdr in phdrs:
-		# 	size = phdr.physical_size
-		# 	vaddr  = BASE_EXEC + phdr.virtual_address
-		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
-
-		# phdrs  = libstdc.segments
-		# for phdr in phdrs:
-		# 	size = phdr.physical_size
-		# 	vaddr  = BASE_LIBSTDC + phdr.virtual_address
-		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
-
-		# phdrs  = ld.segments
-		# for phdr in phdrs:
-		# 	size = phdr.physical_size
-		# 	vaddr  = BASE_LD + phdr.virtual_address
-		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
-
-		# phdrs  = libgcc.segments
-		# for phdr in phdrs:
-		# 	size = phdr.physical_size
-		# 	vaddr  = BASE_LIBGCC + phdr.virtual_address
-		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
-
-		# phdrs  = libm.segments
-		# for phdr in phdrs:
-		# 	size = phdr.physical_size
-		# 	vaddr  = BASE_LIBM + phdr.virtual_address
-		# 	print('Loading 0x%06x - 0x%06x' %(vaddr, vaddr+size))
-		# 	tritonContext.setConcreteMemoryAreaValue(vaddr, phdr.content)
-
-		# let_bind = [
-		# 	"printf",
-		# 	"dprintf",
-		# 	"strlen",
-		# 	"vprintf",
-		# 	"psiginfo",
-		# 	"strchrnul",
-		# 	"strchr",
-		# 	"j_strchrnul"
-		# ]
-
-		# relocations = []
-		# for rel in binary.relocations:
-			# relocations.append(rel)
-		# relocations = [x for x in binary.pltgot_relocations]
-		# relocations.extend([x for x in binary.dynamic_relocations])
-
-		# for rel in [x for x in libc.pltgot_relocations]:
-		# 	if rel.has_symbol:
-		# 		print(str(rel.symbol))
-		# 	else:
-		# 		print(rel.type)
-		# relocations.extend([x for x in libc.dynamic_relocations])
-		# Perform our own relocations
-		# for rel in relocations:
-		# 	symbolName = rel.symbol.name
-		# 	symbolRelo = rel.address
-		# 	if symbolName in let_bind:
-		# 		print(f"Hooking {symbolName}")
-		# 		libc_sym_addr = libc.get_symbol(symbolName).value
-		# 		print(f"name {symbolName} addr {hex(libc_sym_addr)} res {hex(BASE_EXEC + libc_sym_addr)}")
-		# 		tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), BASE_LIBC + libc_sym_addr)
-		# 	else:
-		# 		for crel in customRelocation:
-		# 			if symbolName == crel[0]:
-		# 				print('[+] Hooking %s' %(symbolName))
-		# 				tritonContext.setConcreteMemoryValue(MemoryAccess(symbolRelo, CPUSIZE.QWORD), crel[2])
 		return
 
 	def hookingHandler(self, pc):
