@@ -94,7 +94,7 @@ class RiverTracer:
 		self.maxInputSize = maxInputSize
 
 		INPUT_BUFFER_ADDRESS = self.castGDBValue(int((gdb.execute("p &inputBuf", False, True)).split(") ")[1].split(" <")[0], 0))
-		print(INPUT_BUFFER_ADDRESS)
+		print(hex(INPUT_BUFFER_ADDRESS))
 		if symbolized is False:
 			self.context.enableSymbolicEngine(False)
 		assert self.context.isSymbolicEngineEnabled() == symbolized
@@ -120,6 +120,7 @@ class RiverTracer:
 			for byteIndex in range(inputMaxLenPlusSentinelSize):
 				byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
 				symbolicVar = self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
+				self.context.symbolizeMemory(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))
 				self.symbolicVariablesCache[byteIndex] = symbolicVar
 
 		#self.debugShowAllSymbolicVariables()
@@ -144,7 +145,7 @@ class RiverTracer:
 	# Given a context where to emulate the binary already setup in memory with its input, and the PC address to emulate from, plus a few parameters...
 	# Returns a tuple (true if the optional target address was reached, num new basic blocks found - if countBBlocks is True)
 	# AND the path of basic block addresses found in this run
-	def __emulate(self, pc: int, countBBlocks: bool, inputToTry: RiverUtils.Input):
+	def __emulate(self, pc: int, countBBlocks: bool, inputToTry: RiverUtils.Input, symbolized: bool):
 		global BASE_EXEC
 		global END_EXEC
 		global NAME_EXEC
@@ -180,7 +181,18 @@ class RiverTracer:
 
 			for byteIndex, value in inputToTry.buffer.items():
 				byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
-				print(str(value) + " == " + str(self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
+
+				print("is addr symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
+				print("is addr+1 symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))))
+				
+				if symbolized:
+					if not self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE)):				
+						self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
+					if not self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE)):
+						self.context.symbolizeMemory(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))
+
+				print("-is addr symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
+				print("-is addr+1 symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))))
 				assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
 
 		def restoreContext():
@@ -208,7 +220,6 @@ class RiverTracer:
 			nonlocal newBasicBlocksFound
 			nonlocal basicBlocksPathFoundThisRun
 
-			# print(f"{hex(addr)}")
 			basicBlocksPathFoundThisRun.append(addr)
 			# Is this a new basic block ?
 			if addr not in self.allBlocksFound:
@@ -226,14 +237,13 @@ class RiverTracer:
 
 		value = "{"
 		for (index, content) in inputToTry.buffer.items():
-			if index < len(inputToTry.buffer) - 1:
-				value += str(content) + ","
-			else:
-				value += str(content)
+			value += str(content) + ","
+		value += "0}"
 
-		value += "}"
-		command = "set {}{}{} {}={}".format("{uint8_t[",len(inputToTry.buffer), "]}", "inputBuf", value)
+		if gdb.selected_inferior().pid == 0:
+			gdb.execute("start")
 
+		command = "set {}{}{} {}={}".format("{uint8_t[",(len(inputToTry.buffer) + 1), "]}", "inputBuf", value)
 		gdb.execute(command)
 
 		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
@@ -261,16 +271,14 @@ class RiverTracer:
 			instruction.setOpcode(opcode)
 			instruction.setAddress(pc)
 
-			print("[Before Constr]: "+ str(self.getLastRunPathConstraints()))
 			# Process
 			self.context.processing(instruction)
 			logging.info(instruction)
-			print("[After Constr]: "+ str(self.getLastRunPathConstraints()))
-			print("Is control flow instr: " + str(instruction.isControlFlow()))
 			if instruction.isControlFlow():
 				currentBBlockAddr = pc
 				onBasicBlockFound(currentBBlockAddr)
 
+			print(self.getLastRunPathConstraints())
 			# Next
 			prevpc = pc
 			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
@@ -281,7 +289,7 @@ class RiverTracer:
 				gdb.execute("stepi")
 				if gdb.selected_inferior().pid == 0:
 					break
-				restoreContext()
+				# restoreContext()
 				gdb_pc = self.castGDBValue(gdb.parse_and_eval('$rip'))
 
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
@@ -299,6 +307,7 @@ class RiverTracer:
 				restoreContext()
 				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
 
+			print("rdi = " + hex(self.context.getConcreteRegisterValue(self.context.registers.rdi)))
 			pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 			
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
@@ -336,18 +345,21 @@ class RiverTracer:
 		def symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized):
 			global INPUT_BUFFER_ADDRESS
 			byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
-
 			if symbolized:
 				# If not needed to reset symbolic state, just take the variable from the cache store and set its current value
 				if self.resetSymbolicMemoryAtEachRun: # Not used anymore
 					self.context.setConcreteMemoryValue(byteAddr, value)
 					self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
 				else:
-					self.context.setConcreteVariableValue(self.symbolicVariablesCache[byteIndex], value)
-					assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
+					try:
+						self.context.setConcreteVariableValue(self.symbolicVariablesCache[byteIndex], value)
+						assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
+					except:
+						pass
 
 		# Continuous area level
 		def symbolizeAndConcretizeArea(addr, values):
+			global INPUT_BUFFER_ADDRESS
 			if symbolized:
 				if self.resetSymbolicMemoryAtEachRun: # Not used anymore
 					self.context.setConcreteMemoryAreaValue(addr, values)
@@ -401,7 +413,7 @@ class RiverTracer:
 		self.__initContext(inputToTry, symbolized=symbolized)
 
 		# Emulate the binary with the setup memory
-		return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry)
+		return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry, symbolized=symbolized)
 
 	def getLastRunPathConstraints(self):
 		return self.context.getPathConstraints()

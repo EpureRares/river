@@ -50,4 +50,5 @@ int main(int argc, char** argv)
             //delete[] copy;
         //}
     //}
+    return 0;
 }

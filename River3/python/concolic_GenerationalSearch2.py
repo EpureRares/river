@@ -11,6 +11,8 @@ import argparse
 import RiverUtils as RiverUtils
 from RiverTracer import RiverTracer
 from typing import List, Dict, Set
+from signal import signal, SIGPIPE, SIG_DFL
+# signal(SIGPIPE, SIG_DFL)
 import copy
 import time
 from RiverOutputStats import RiverStatsTextual
