@@ -95,6 +95,7 @@ class RiverTracer:
 
 		INPUT_BUFFER_ADDRESS = self.castGDBValue(int((gdb.execute("p &inputBuf", False, True)).split(") ")[1].split(" <")[0], 0))
 		print(hex(INPUT_BUFFER_ADDRESS))
+
 		if symbolized is False:
 			self.context.enableSymbolicEngine(False)
 		assert self.context.isSymbolicEngineEnabled() == symbolized
@@ -165,7 +166,9 @@ class RiverTracer:
 			for key in memory:
 				if key == name_exec or key == "[stack]" or key == "[heap]" or key == "none":
 					update_memory.extend(memory[key])
-	
+			
+			const_list = self.context.getSymbolicMemory()
+			taint_list = self.context.getTaintedMemory()
 			for page in update_memory:
 				startAddr = page.getStartAddr()
 				size = int(page.getSize() / 8)
@@ -179,21 +182,30 @@ class RiverTracer:
 					self.context.setConcreteMemoryAreaValue(startAddr, s)
 					startAddr += 8
 
-			for byteIndex, value in inputToTry.buffer.items():
-				byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
+			print("\n[Addr symbolized]: " + str(const_list))
+			print(self.getLastRunPathConstraints())
+			print(str(taint_list)+ " " + str(self.context.getTaintedMemory())+ "\n")
+			if symbolized:
+				for elem in const_list.keys():
+					if not self.context.isMemorySymbolized(MemoryAccess(elem, CPUSIZE.BYTE)):
+						self.context.symbolizeMemory(MemoryAccess(elem, CPUSIZE.BYTE))
 
-				print("is addr symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
-				print("is addr+1 symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))))
-				
-				if symbolized:
-					if not self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE)):				
-						self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
-					if not self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE)):
-						self.context.symbolizeMemory(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))
+				# inputLen = max(inputToTry.buffer.keys()) + 1
+				# if not self.context.isRegisterSymbolized(self.context.registers.rsi):
+				# 	self.context.symbolizeRegister(self.context.registers.rsi)
 
-				print("-is addr symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE))))
-				print("-is addr+1 symbolized = "+ str(self.context.isMemorySymbolized(MemoryAccess(byteAddr + 1, CPUSIZE.BYTE))))
-				assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
+				# for byteIndex, value in inputToTry.buffer.items():
+				# 	byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
+
+				# 	if not self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE)):				
+				# 		self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
+
+				# for sentinelByteIndex in range(inputLen, inputLen + RiverUtils.SENTINEL_SIZE):
+				# 	self.context.symbolizeMemory(MemoryAccess(sentinelByteIndex + INPUT_BUFFER_ADDRESS, CPUSIZE.BYTE))
+
+				# assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
+
+
 
 		def restoreContext():
 			self.context.setConcreteRegisterValue(self.context.registers.rax, self.castGDBValue((gdb.parse_and_eval('$rax'))))
@@ -244,6 +256,7 @@ class RiverTracer:
 			gdb.execute("start")
 
 		command = "set {}{}{} {}={}".format("{uint8_t[",(len(inputToTry.buffer) + 1), "]}", "inputBuf", value)
+		print(command)
 		gdb.execute(command)
 
 		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
@@ -278,7 +291,7 @@ class RiverTracer:
 				currentBBlockAddr = pc
 				onBasicBlockFound(currentBBlockAddr)
 
-			print(self.getLastRunPathConstraints())
+			# print(self.getLastRunPathConstraints())
 			# Next
 			prevpc = pc
 			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
@@ -307,7 +320,6 @@ class RiverTracer:
 				restoreContext()
 				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
 
-			print("rdi = " + hex(self.context.getConcreteRegisterValue(self.context.registers.rdi)))
 			pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 			
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
@@ -353,6 +365,7 @@ class RiverTracer:
 				else:
 					try:
 						self.context.setConcreteVariableValue(self.symbolicVariablesCache[byteIndex], value)
+						self.context.taintMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
 						assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
 					except:
 						pass
@@ -385,6 +398,7 @@ class RiverTracer:
 			#	symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized)
 		else:
 			inputLen = max(inputToTry.buffer.keys()) + 1
+			# self.context.symbolizeRegister(self.context.registers.rsi)
 			for byteIndex, value in inputToTry.buffer.items():
 				symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized)
 

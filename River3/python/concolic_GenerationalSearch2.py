@@ -49,7 +49,7 @@ def Expand(symbolicTracer : RiverTracer, inputToTry):
 
     # This represents the current path constraint, dummy initialization
     currentPathConstraint = astCtxt.equal(astCtxt.bvtrue(), astCtxt.bvtrue())
-
+    print("[Constrints]: " + str(PathConstraints))
     # Go through the path constraints from bound of the input (to prevent backtracking as described in the paper)
     PCLen = len(PathConstraints)
     for pcIndex in range(inputToTry.bound, PCLen):
