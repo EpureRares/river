@@ -104,6 +104,7 @@ class RiverTracer:
 		self.context.setMode(MODE.ALIGNED_MEMORY, True)
 		if symbolized:
 			self.context.setMode(MODE.ONLY_ON_SYMBOLIZED, True)
+			# self.context.setMode(MODE.PC_TRACKING_SYMBOLIC, False)
 			# symbolicContext.setMode(MODE.AST_OPTIMIZATIONS, True)
 			# symbolicContext.setMode(MODE.CONSTANT_FOLDING, True)
 
@@ -168,6 +169,10 @@ class RiverTracer:
 					update_memory.extend(memory[key])
 			
 			const_list = self.context.getSymbolicMemory()
+			# print(self.getLastRunPathConstraints(), file=sys.stderr)
+			# for elem in const_list.keys():
+				# print(self.context.getMemoryAst(MemoryAccess(elem, CPUSIZE.BYTE)), file=sys.stderr)
+			# print(self.context.getSymbolicVariables(), file=sys.stderr)
 			taint_list = self.context.getTaintedMemory()
 			for page in update_memory:
 				startAddr = page.getStartAddr()
@@ -175,58 +180,39 @@ class RiverTracer:
 				examine_command = "x/" + str(size) + "ug " + str(hex(startAddr))
 				addresses = gdb.execute(examine_command, False, True)
 				addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
-
 				addresses = [int(elem).to_bytes(8, byteorder='little') for elem in addresses if ":" not in elem]
 				
 				for s in addresses:
-					self.context.setConcreteMemoryAreaValue(startAddr, s)
+					if s != self.context.getConcreteMemoryAreaValue(startAddr, 8):
+						self.context.setConcreteMemoryAreaValue(startAddr, s)
 					startAddr += 8
 
-			print("\n[Addr symbolized]: " + str(const_list))
-			print(self.getLastRunPathConstraints())
-			print(str(taint_list)+ " " + str(self.context.getTaintedMemory())+ "\n")
-			if symbolized:
-				for elem in const_list.keys():
-					if not self.context.isMemorySymbolized(MemoryAccess(elem, CPUSIZE.BYTE)):
-						self.context.symbolizeMemory(MemoryAccess(elem, CPUSIZE.BYTE))
-
-				# inputLen = max(inputToTry.buffer.keys()) + 1
-				# if not self.context.isRegisterSymbolized(self.context.registers.rsi):
-				# 	self.context.symbolizeRegister(self.context.registers.rsi)
-
-				# for byteIndex, value in inputToTry.buffer.items():
-				# 	byteAddr = INPUT_BUFFER_ADDRESS + byteIndex
-
-				# 	if not self.context.isMemorySymbolized(MemoryAccess(byteAddr, CPUSIZE.BYTE)):				
-				# 		self.context.symbolizeMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
-
-				# for sentinelByteIndex in range(inputLen, inputLen + RiverUtils.SENTINEL_SIZE):
-				# 	self.context.symbolizeMemory(MemoryAccess(sentinelByteIndex + INPUT_BUFFER_ADDRESS, CPUSIZE.BYTE))
-
-				# assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
-
-
+		def restoreRegister(tritonRegister, registerName):
+			if self.context.getConcreteRegisterValue(tritonRegister) != self.castGDBValue(gdb.parse_and_eval(registerName)):
+				self.context.setConcreteRegisterValue(tritonRegister, self.castGDBValue((gdb.parse_and_eval(registerName))))
 
 		def restoreContext():
-			self.context.setConcreteRegisterValue(self.context.registers.rax, self.castGDBValue((gdb.parse_and_eval('$rax'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rbx, self.castGDBValue((gdb.parse_and_eval('$rbx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rcx, self.castGDBValue((gdb.parse_and_eval('$rcx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rdx, self.castGDBValue((gdb.parse_and_eval('$rdx'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rsp, self.castGDBValue(gdb.parse_and_eval('$rsp')))
-			self.context.setConcreteRegisterValue(self.context.registers.rbp, self.castGDBValue((gdb.parse_and_eval('$rbp'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rdi, self.castGDBValue((gdb.parse_and_eval('$rdi'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rsi, self.castGDBValue((gdb.parse_and_eval('$rsi'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r8, self.castGDBValue((gdb.parse_and_eval('$r8'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r9, self.castGDBValue((gdb.parse_and_eval('$r9'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r10, self.castGDBValue((gdb.parse_and_eval('$r10'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r11, self.castGDBValue((gdb.parse_and_eval('$r11'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r12, self.castGDBValue((gdb.parse_and_eval('$r12'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r13, self.castGDBValue((gdb.parse_and_eval('$r13'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r14, self.castGDBValue((gdb.parse_and_eval('$r14'))))
-			self.context.setConcreteRegisterValue(self.context.registers.r15, self.castGDBValue((gdb.parse_and_eval('$r15'))))
-			self.context.setConcreteRegisterValue(self.context.registers.rip, self.castGDBValue((gdb.parse_and_eval('$rip'))))
-			self.context.setConcreteRegisterValue(self.context.registers.eflags, self.castGDBValue(gdb.parse_and_eval('$eflags')))
+			registers_list = self.context.getSymbolicRegisters()
+			restoreRegister(self.context.registers.rax, '$rax')
+			restoreRegister(self.context.registers.rbx, '$rbx')
+			restoreRegister(self.context.registers.rcx, '$rcx')
+			restoreRegister(self.context.registers.rdx, '$rdx')
+			restoreRegister(self.context.registers.rsi, '$rsi')
+			restoreRegister(self.context.registers.rdi, '$rdi')
+			restoreRegister(self.context.registers.rsp, '$rsp')
+			restoreRegister(self.context.registers.rbp, '$rbp')
+			restoreRegister(self.context.registers.r8, '$r8')
+			restoreRegister(self.context.registers.r9, '$r9')
+			restoreRegister(self.context.registers.r10, '$r10')
+			restoreRegister(self.context.registers.r11, '$r11')
+			restoreRegister(self.context.registers.r12, '$r12')
+			restoreRegister(self.context.registers.r13, '$r13')
+			restoreRegister(self.context.registers.r14, '$r14')
+			restoreRegister(self.context.registers.r15, '$r15')
+			restoreRegister(self.context.registers.rip, '$rip')
+			# restoreRegister(self.context.registers.eflags, '$eflags')
 
+	
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
 			nonlocal newBasicBlocksFound
@@ -243,10 +229,6 @@ class RiverTracer:
 
 		logging.info('[+] Starting emulation.')
 
-		# command = "set {}{}={}".format("{" +"int"+ "}", "inputBuf",INPUT_BUFFER_ADDRESS)
-		# print(command)
-		# gdb.execute(command)
-
 		value = "{"
 		for (index, content) in inputToTry.buffer.items():
 			value += str(content) + ","
@@ -256,7 +238,6 @@ class RiverTracer:
 			gdb.execute("start")
 
 		command = "set {}{}{} {}={}".format("{uint8_t[",(len(inputToTry.buffer) + 1), "]}", "inputBuf", value)
-		print(command)
 		gdb.execute(command)
 
 		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
@@ -275,6 +256,7 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
 
+		restoreContext()
 		while pc:
 			# Fetch opcode
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
@@ -287,11 +269,11 @@ class RiverTracer:
 			# Process
 			self.context.processing(instruction)
 			logging.info(instruction)
+
 			if instruction.isControlFlow():
 				currentBBlockAddr = pc
 				onBasicBlockFound(currentBBlockAddr)
 
-			# print(self.getLastRunPathConstraints())
 			# Next
 			prevpc = pc
 			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
@@ -317,9 +299,8 @@ class RiverTracer:
 
 				if gdb.selected_inferior().pid == 0:
 					break
-				restoreContext()
 				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
-
+				restoreContext()
 			pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 			
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
@@ -331,6 +312,8 @@ class RiverTracer:
 
 		if basicBlocksPathFoundThisRun[-1] == 0: # ret instruction
 			basicBlocksPathFoundThisRun = basicBlocksPathFoundThisRun[:-1]
+
+		# print(self.context.getAstRepresentationMode(), file=sys.stderr)
 		return targetAddressFound, numNewBasicBlocks, basicBlocksPathFoundThisRun
 
 	def debugShowAllSymbolicVariables(self):
@@ -513,6 +496,7 @@ class RiverTracer:
 				vaddr = phdr.virtual_address
 				if IS_NORMAL:
 					vaddr += BASE_EXEC
+				# print('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size), file=sys.stderr)
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
 				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, bytes(phdr.content))
 				#assert False, "Check where is stack and heap and reset them "
@@ -730,7 +714,7 @@ IS_NORMAL = True
 MAPPINGS = {}
 NAME_EXEC = None
 
-BASE_STACK = 0x9fffffff
+BASE_STACK = 0x7ffffffde000
 
 # Allocation information used by malloc()
 mallocCurrentAllocation = 0
