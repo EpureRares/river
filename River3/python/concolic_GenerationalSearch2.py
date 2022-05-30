@@ -25,7 +25,7 @@ import gdb
 # We don't keep inputs or symbolic conditions because we don;t need them so far..just the graph
 BlocksGraph : Dict[int, Set[int]] = {} # From basic block to the list of basic blocks and possible links
 
-RECONSTRUCT_BB_GRAPH = False # Enable this if you need the block graph above
+RECONSTRUCT_BB_GRAPH = True # Enable this if you need the block graph above
 
 def onEdgeDetected(fromAddr, toAddr):
     if fromAddr not in BlocksGraph:

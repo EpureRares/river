@@ -169,10 +169,7 @@ class RiverTracer:
 					update_memory.extend(memory[key])
 			
 			const_list = self.context.getSymbolicMemory()
-			# print(self.getLastRunPathConstraints(), file=sys.stderr)
-			# for elem in const_list.keys():
-				# print(self.context.getMemoryAst(MemoryAccess(elem, CPUSIZE.BYTE)), file=sys.stderr)
-			# print(self.context.getSymbolicVariables(), file=sys.stderr)
+			
 			taint_list = self.context.getTaintedMemory()
 			for page in update_memory:
 				startAddr = page.getStartAddr()
@@ -210,7 +207,7 @@ class RiverTracer:
 			restoreRegister(self.context.registers.r14, '$r14')
 			restoreRegister(self.context.registers.r15, '$r15')
 			restoreRegister(self.context.registers.rip, '$rip')
-			# restoreRegister(self.context.registers.eflags, '$eflags')
+			restoreRegister(self.context.registers.eflags, '$eflags')
 
 	
 		def onBasicBlockFound(addr):
@@ -284,7 +281,6 @@ class RiverTracer:
 				gdb.execute("stepi")
 				if gdb.selected_inferior().pid == 0:
 					break
-				# restoreContext()
 				gdb_pc = self.castGDBValue(gdb.parse_and_eval('$rip'))
 
 			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
