@@ -1,0 +1,2731 @@
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faa41dd0dc0>, <RiverUtils.Input object at 0x7faa41dd0c10>, <RiverUtils.Input object at 0x7faa41dd0ca0>, <RiverUtils.Input object at 0x7faa41d567f0>]
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 28.29s Found 26 blocks '
+' at addresses {93824992237186, 93824992237378, 93824992236292, 93824992236164, 93824992236356, 93824992236869, 93824992237002, 93824992237198, 93824992236372, 93824992237403, 93824992237404, 93824992237469, 93824992237277, 93824992237088, 93824992237344, 93824992237029, 93824992237159, 93824992237097, 93824992237226, 93824992236842, 93824992236909, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237052}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 12)
+Temporary breakpoint 6 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 8)
+Temporary breakpoint 7 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faa41d86cd0>]
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 8)
+Temporary breakpoint 8 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 48.60s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 21)
+Temporary breakpoint 9 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 62.59s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 2)
+Temporary breakpoint 11 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 66.83s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+.
+----------------------------------------------------------------------
+Ran 1 test in 67.156s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc1f9ed04f0>]
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc1f9ed0b20>]
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc1f9ed0b50>]
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 11.91s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc1f9ed0bb0>]
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc1f9e64d00>]
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 25.32s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 29.15s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 29.452s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f630cad7460>]
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f630cad7a90>]
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.77s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.034s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fdb03bf6dc0>, <RiverUtils.Input object at 0x7fdb03bf6c10>, <RiverUtils.Input object at 0x7fdb03bf6ca0>, <RiverUtils.Input object at 0x7fdb03bfb7f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 35.25s Found 26 blocks '
+' at addresses {93824992237186, 93824992237378, 93824992236292, 93824992236164, 93824992236356, 93824992236869, 93824992237002, 93824992237198, 93824992236372, 93824992237403, 93824992237404, 93824992237469, 93824992237277, 93824992237088, 93824992237344, 93824992237029, 93824992237159, 93824992237097, 93824992237226, 93824992236842, 93824992236909, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237052}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 12)
+Temporary breakpoint 6 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 8)
+Temporary breakpoint 7 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fdb03b9ecd0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfd\x00\x00d'
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 8)
+Temporary breakpoint 8 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 59.86s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 21)
+Temporary breakpoint 9 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 75.51s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 2)
+Temporary breakpoint 11 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 79.96s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+.
+----------------------------------------------------------------------
+Ran 1 test in 80.613s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe0be5744f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1ood'
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe0be574b20>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:od'
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe0be574b50>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:=d'
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 13.00s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe0be574bb0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="'
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe0be58cd00>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="1'
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 27.45s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 31.39s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 31.670s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc7df666460>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xood'
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc7df666ac0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xyod'
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.82s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.096s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7ff72e960dc0>, <RiverUtils.Input object at 0x7ff72e960c10>, <RiverUtils.Input object at 0x7ff72e960ca0>, <RiverUtils.Input object at 0x7ff72e8e67f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 31.30s Found 26 blocks '
+' at addresses {93824992237186, 93824992237378, 93824992236292, 93824992236164, 93824992236356, 93824992236869, 93824992237002, 93824992237198, 93824992236372, 93824992237403, 93824992237404, 93824992237469, 93824992237277, 93824992237088, 93824992237344, 93824992237029, 93824992237159, 93824992237097, 93824992237226, 93824992236842, 93824992236909, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237052}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 12)
+Temporary breakpoint 6 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 8)
+Temporary breakpoint 7 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7ff72e91dcd0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfd\x00\x00d'
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 8)
+Temporary breakpoint 8 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 53.05s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 21)
+Temporary breakpoint 9 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 67.39s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 2)
+Temporary breakpoint 11 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 71.87s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+.
+----------------------------------------------------------------------
+Ran 1 test in 72.290s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faeef848520>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1ood'
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faeef848af0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:od'
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faeef848940>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:=d'
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 12.40s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faeef8487f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="'
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7faeef84fd60>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="1'
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 26.91s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 30.85s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 31.131s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7efef4004460>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xood'
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7efef4004a90>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xyod'
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.78s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.053s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f39bec75bb0>, <RiverUtils.Input object at 0x7f39bec75d00>, <RiverUtils.Input object at 0x7f39bec75d90>, <RiverUtils.Input object at 0x7f39bebfb8b0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+None
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+None
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+None
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+None
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 31.21s Found 26 blocks '
+' at addresses {93824992237186, 93824992237378, 93824992236292, 93824992236164, 93824992236356, 93824992236869, 93824992237002, 93824992237198, 93824992236372, 93824992237403, 93824992237404, 93824992237469, 93824992237277, 93824992237088, 93824992237344, 93824992237029, 93824992237159, 93824992237097, 93824992237226, 93824992236842, 93824992236909, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237052}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 12)
+Temporary breakpoint 6 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 8)
+Temporary breakpoint 7 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f39bec14cd0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfd\x00\x00d'
+None
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 8)
+Temporary breakpoint 8 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 54.88s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 21)
+Temporary breakpoint 9 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 70.76s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 2)
+Temporary breakpoint 11 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 75.30s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+.
+----------------------------------------------------------------------
+Ran 1 test in 75.729s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fcdbc2504f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1ood'
+None
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fcdbc250b20>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:od'
+None
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fcdbc250b50>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:=d'
+None
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 13.93s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fcdbc250bb0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="'
+None
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fcdbc26ed00>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="1'
+None
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 27.88s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 31.81s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 32.112s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7efd35da9460>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xood'
+None
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7efd35da9ac0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xyod'
+None
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.78s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.055s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f4b743d2bb0>, <RiverUtils.Input object at 0x7f4b743d2d00>, <RiverUtils.Input object at 0x7f4b743d2d90>, <RiverUtils.Input object at 0x7f4b743588b0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+ISSUENone
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+ISSUENone
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+ISSUENone
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+ISSUENone
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 30.51s Found 26 blocks '
+' at addresses {93824992237186, 93824992237378, 93824992236292, 93824992236164, 93824992236356, 93824992236869, 93824992237002, 93824992237198, 93824992236372, 93824992237403, 93824992237404, 93824992237469, 93824992237277, 93824992237088, 93824992237344, 93824992237029, 93824992237159, 93824992237097, 93824992237226, 93824992236842, 93824992236909, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237052}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 12)
+Temporary breakpoint 6 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 8)
+Temporary breakpoint 7 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f4b74380cd0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfd\x00\x00d'
+ISSUENone
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 8)
+Temporary breakpoint 8 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 54.07s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 21)
+Temporary breakpoint 9 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 68.35s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 2)
+Temporary breakpoint 11 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 73.04s Found 27 blocks '
+' at addresses {93824992237186, 93824992236292, 93824992236164, 93824992237198, 93824992237469, 93824992237088, 93824992237344, 93824992237097, 93824992237226, 93824992236842, 93824992237235, 93824992236084, 93824992237109, 93824992237498, 93824992237378, 93824992236356, 93824992236869, 93824992237002, 93824992236878, 93824992236372, 93824992237403, 93824992237404, 93824992237277, 93824992237029, 93824992237159, 93824992236909, 93824992237052}
+.
+----------------------------------------------------------------------
+Ran 1 test in 73.400s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe9835d64f0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1ood'
+ISSUENone
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe9835d6b20>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:od'
+ISSUENone
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe9835d6b50>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:=d'
+ISSUENone
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 12.06s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe9835d6bb0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="'
+ISSUENone
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe9835efd00>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_xor with input b'1:="1'
+ISSUENone
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 25.71s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 29.66s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 29.986s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f2bd4b44460>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xood'
+ISSUENone
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f2bd4b44a90>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample with input b'xyod'
+ISSUENone
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.84s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.120s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7ff54d965bb0>, <RiverUtils.Input object at 0x7ff54d965d00>, <RiverUtils.Input object at 0x7ff54d965d90>, <RiverUtils.Input object at 0x7ff54d8ec8b0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555575c: file sample.c, line 52.
+3023	malloc.c: No such file or directory.
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 60, in <module>
+    unittest.TextTestRunner().run(singletest)
+  File "/usr/lib/python3.8/unittest/runner.py", line 176, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/suite.py", line 122, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/case.py", line 736, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 43, in test_fuzzer
+    listInputs = SearchInputs(symbolicTracer=symbolicTracer, simpleTracer=simpleTracer, initialSeedDict=initialSeedDict,
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 142, in SearchInputs
+    targetFound, newInp.priority = ScoreInput(newInp, simpleTracer)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 194, in ScoreInput
+    targetFound, numNewBlocks, allBBsInThisRun = simpleTracer.runInput(newInp, symbolized=False, countBBlocks=True)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 470, in runInput
+    return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry, symbolized=symbolized)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 351, in __emulate
+    updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 189, in updateMemory
+    if s != self.context.getConcreteMemoryAreaValue(startAddr, 8):
+KeyboardInterrupt
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f1ed3c80400>, <RiverUtils.Input object at 0x7f1ed3c80430>, <RiverUtils.Input object at 0x7f1ed3c80490>, <RiverUtils.Input object at 0x7f1ed3c80520>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555305: file sample.c, line 53.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555305: file sample.c, line 53.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555305: file sample.c, line 53.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555305: file sample.c, line 53.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 60, in <module>
+    unittest.TextTestRunner().run(singletest)
+  File "/usr/lib/python3.8/unittest/runner.py", line 176, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/suite.py", line 122, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/case.py", line 736, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 43, in test_fuzzer
+    listInputs = SearchInputs(symbolicTracer=symbolicTracer, simpleTracer=simpleTracer, initialSeedDict=initialSeedDict,
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 142, in SearchInputs
+    targetFound, newInp.priority = ScoreInput(newInp, simpleTracer)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 194, in ScoreInput
+    targetFound, numNewBlocks, allBBsInThisRun = simpleTracer.runInput(newInp, symbolized=False, countBBlocks=True)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 470, in runInput
+    return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry, symbolized=symbolized)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 351, in __emulate
+    updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 196, in updateMemory
+    startAddr += 8
+KeyboardInterrupt
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f6f9a1ab340>, <RiverUtils.Input object at 0x7f6f9a1ab2b0>, <RiverUtils.Input object at 0x7f6f9a1ab400>, <RiverUtils.Input object at 0x7f6f9a1ab490>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555552f5: file sample.c, line 52.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x5555555552f5: file sample.c, line 52.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x5555555552f5: file sample.c, line 52.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f122036e3a0>, <RiverUtils.Input object at 0x7f122036e400>, <RiverUtils.Input object at 0x7f122036e490>, <RiverUtils.Input object at 0x7f122036e580>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555537b: file sample.c, line 61.
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555537b: file sample.c, line 61.
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f5c8d5134f0>, <RiverUtils.Input object at 0x7f5c8d513490>, <RiverUtils.Input object at 0x7f5c8d513550>, <RiverUtils.Input object at 0x7f5c8d5132b0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x55555555536f: file sample.c, line 60.
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x55555555536f: file sample.c, line 60.
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x55555555536f: file sample.c, line 60.
+28	printf.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f18cdf3f640>, <RiverUtils.Input object at 0x7f18cdf3f940>, <RiverUtils.Input object at 0x7f18cdf3f430>, <RiverUtils.Input object at 0x7f18cdf3f4c0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555553b3: file sample.c, line 60.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f7dd15f6640>, <RiverUtils.Input object at 0x7f7dd15f6940>, <RiverUtils.Input object at 0x7f7dd15f6430>, <RiverUtils.Input object at 0x7f7dd15f64c0>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555553b3: file sample.c, line 60.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x5555555553b3: file sample.c, line 60.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x5555555553b3: file sample.c, line 60.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+42	../sysdeps/x86_64/multiarch/strlen-avx2.S: No such file or directory.
+28	printf.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fc25652f460>, <RiverUtils.Input object at 0x7fc25652f610>, <RiverUtils.Input object at 0x7fc25652f4c0>, <RiverUtils.Input object at 0x7fc25652f550>]
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'go d'
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x01o\xdfd'
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\x02o\xdfd'
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+Testing /home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/sample with input b'\xfdo\x00d'
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+Traceback (most recent call last):
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 60, in <module>
+    unittest.TextTestRunner().run(singletest)
+  File "/usr/lib/python3.8/unittest/runner.py", line 176, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/suite.py", line 84, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/suite.py", line 122, in run
+    test(result)
+  File "/usr/lib/python3.8/unittest/case.py", line 736, in __call__
+    return self.run(*args, **kwds)
+  File "/usr/lib/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/ubuntu/Desktop/auux/river/River3/Unittests/simple_test.py", line 43, in test_fuzzer
+    listInputs = SearchInputs(symbolicTracer=symbolicTracer, simpleTracer=simpleTracer, initialSeedDict=initialSeedDict,
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 142, in SearchInputs
+    targetFound, newInp.priority = ScoreInput(newInp, simpleTracer)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/concolic_GenerationalSearch2.py", line 194, in ScoreInput
+    targetFound, numNewBlocks, allBBsInThisRun = simpleTracer.runInput(newInp, symbolized=False, countBBlocks=True)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 470, in runInput
+    return self.__emulate(self.entryFuncAddr, countBBlocks=countBBlocks, inputToTry=inputToTry, symbolized=symbolized)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 351, in __emulate
+    updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+  File "/home/ubuntu/Desktop/auux/river/River3/python/RiverTracer.py", line 185, in updateMemory
+    addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
+  File "/usr/lib/python3.8/re.py", line 231, in split
+    return _compile(pattern, flags).split(string, maxsplit)
+KeyboardInterrupt
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe7507f2460>, <RiverUtils.Input object at 0x7fe7507f2c10>, <RiverUtils.Input object at 0x7fe7507f24c0>, <RiverUtils.Input object at 0x7fe7507f2550>]
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 96.91s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 19)
+Temporary breakpoint 6 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 111.57s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 10)
+Temporary breakpoint 7 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fe7507f2520>]
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 10)
+Temporary breakpoint 8 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 146.13s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 28)
+Temporary breakpoint 9 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 164.13s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 181.77s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 4)
+Temporary breakpoint 11 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 201.11s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:After 201.11s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+.
+----------------------------------------------------------------------
+Ran 1 test in 201.524s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f22bcf7b4f0>]
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f22bcff5e50>]
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f22bcff5b80>]
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 14.90s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f22bcff5e50>]
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f22bcf7b8e0>]
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 31.99s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 37.22s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 37.580s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fb068d4d460>]
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fb068d4d730>]
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 1.41s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.751s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f78acc97460>, <RiverUtils.Input object at 0x7f78acc97610>, <RiverUtils.Input object at 0x7f78acc974c0>, <RiverUtils.Input object at 0x7f78acc97550>]
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 116.98s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 19)
+Temporary breakpoint 6 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 136.40s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 10)
+Temporary breakpoint 7 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f78acc97520>]
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 10)
+Temporary breakpoint 8 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 177.90s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 28)
+Temporary breakpoint 9 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 199.76s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 225.10s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 4)
+Temporary breakpoint 11 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 241.60s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:After 241.60s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+.
+----------------------------------------------------------------------
+Ran 1 test in 241.885s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f74eab1b4f0>]
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f74eab96e50>]
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f74eab96b80>]
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 13.14s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f74eab96e50>]
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f74eab1b8e0>]
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 13)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 30.98s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 1)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 37.39s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 37.707s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f5ada8c8460>]
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f5ada8c8730>]
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 0.88s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 1.221s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f9246e02460>, <RiverUtils.Input object at 0x7f9246e02610>, <RiverUtils.Input object at 0x7f9246e024c0>, <RiverUtils.Input object at 0x7f9246e02550>]
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 105.99s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 19)
+Temporary breakpoint 6 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 127.09s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 10)
+Temporary breakpoint 7 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f1c5ed2b460>, <RiverUtils.Input object at 0x7f1c5ed2b610>, <RiverUtils.Input object at 0x7f1c5ed2b4c0>, <RiverUtils.Input object at 0x7f1c5ed2b550>]
+CRITICAL:root:--Scoring input (103 111 32 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (1 111 223 100..bound: 2, priority: 0)
+Temporary breakpoint 3 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (2 111 223 100..bound: 3, priority: 0)
+Temporary breakpoint 4 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+CRITICAL:root:--Scoring input (253 111 0 100..bound: 4, priority: 0)
+Temporary breakpoint 5 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 111.86s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (103 111 32 100..bound: 1, priority: 19)
+Temporary breakpoint 6 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 131.01s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 111 0 100..bound: 4, priority: 10)
+Temporary breakpoint 7 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f1c5ed2b520>]
+CRITICAL:root:--Scoring input (253 0 0 100..bound: 5, priority: 10)
+Temporary breakpoint 8 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 178.03s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (253 0 0 100..bound: 5, priority: 28)
+Temporary breakpoint 9 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+25	putchar.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 200.55s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (2 111 223 100..bound: 3, priority: 4)
+Temporary breakpoint 10 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 224.41s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:Seed injected:, (1 111 223 100..bound: 2, priority: 4)
+Temporary breakpoint 11 at 0x555555555393: file sample.c, line 60.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+3023	malloc.c: No such file or directory.
+127	../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+28	printf.c: No such file or directory.
+3087	malloc.c: No such file or directory.
+50	../sysdeps/unix/sysv/linux/raise.c: No such file or directory.
+[]
+CRITICAL:root:After 245.29s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+CRITICAL:root:After 245.29s Found 37 blocks '
+' at addresses {93824992236291, 93824992236036, 93824992236549, 93824992236169, 93824992236427, 93824992236045, 93824992236303, 93824992236434, 93824992236435, 93824992236055, 93824992236568, 93824992236313, 93824992236190, 93824992236579, 93824992235684, 93824992236202, 93824992236334, 93824992235700, 93824992236214, 93824992236346, 93824992236480, 93824992236226, 93824992235716, 93824992236358, 93824992236492, 93824992236112, 93824992235732, 93824992236382, 93824992236258, 93824992235748, 93824992236139, 93824992236279, 93824992236527, 93824992235764, 93824992236151, 93824992236540, 93824992236413}
+.
+----------------------------------------------------------------------
+Ran 1 test in 246.331s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fd9ae6b8520>]
+CRITICAL:root:--Scoring input (49 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 111 111 100..bound: 1, priority: 13)
+Temporary breakpoint 3 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fd9ae723e50>]
+CRITICAL:root:--Scoring input (49 58 111 100..bound: 2, priority: 13)
+Temporary breakpoint 4 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 10.65s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235979, 93824992236046, 93824992235636, 93824992235956, 93824992235992, 93824992236058, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 111 100..bound: 2, priority: 0)
+Temporary breakpoint 5 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fd9ae723b80>]
+CRITICAL:root:--Scoring input (49 58 61 100..bound: 3, priority: 0)
+Temporary breakpoint 6 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 100..bound: 3, priority: 13)
+Temporary breakpoint 7 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fd9ae723e50>]
+CRITICAL:root:--Scoring input (49 58 61 34..bound: 4, priority: 13)
+Temporary breakpoint 8 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:After 25.38s Found 13 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:Seed injected:, (49 58 61 34..bound: 4, priority: 0)
+Temporary breakpoint 9 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7fd9ae6b88e0>]
+CRITICAL:root:--Scoring input (49 58 61 34 49..bound: 5, priority: 0)
+Temporary breakpoint 10 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (49 58 61 34 49..bound: 5, priority: 12)
+Temporary breakpoint 11 at 0x5555555551e8: file crackme_xor.c, line 27.
+28	printf.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+33	ioputs.c: No such file or directory.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 39.98s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+CRITICAL:root:After 39.98s Found 14 blocks '
+' at addresses {93824992235904, 93824992235970, 93824992235979, 93824992236046, 93824992235992, 93824992236058, 93824992236001, 93824992235620, 93824992236069, 93824992236007, 93824992236008, 93824992235636, 93824992235956, 93824992235965}
+.
+----------------------------------------------------------------------
+Ran 1 test in 40.367s
+
+OK
+CRITICAL:root:Seed injected:, (103 111 111 100..bound: 0, priority: 0)
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f78562b4460>]
+CRITICAL:root:--Scoring input (120 111 111 100..bound: 1, priority: 0)
+Temporary breakpoint 2 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 111 111 100..bound: 1, priority: 7)
+Temporary breakpoint 3 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[<RiverUtils.Input object at 0x7f78562b4730>]
+CRITICAL:root:--Scoring input (120 121 111 100..bound: 2, priority: 7)
+Temporary breakpoint 4 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+CRITICAL:root:Seed injected:, (120 121 111 100..bound: 2, priority: 1)
+Temporary breakpoint 5 at 0x555555555170: file crackme_sample.c, line 19.
+342	../csu/libc-start.c: No such file or directory.
+[]
+CRITICAL:root:After 1.40s Found 8 blocks '
+' at addresses {93824992235872, 93824992235841, 93824992235879, 93824992235919, 93824992235888, 93824992235856, 93824992235887, 93824992235925}
+.
+----------------------------------------------------------------------
+Ran 1 test in 2.105s
+
+OK

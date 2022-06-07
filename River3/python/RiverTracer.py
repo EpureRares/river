@@ -62,6 +62,9 @@ class GdbPage:
 
 	@staticmethod
 	def createMemoryDict():
+		global NAME_EXEC
+		global DATA_SEGMENT_ADDR
+
 		memory = {}
 		info_mappings = gdb.execute("info proc mappings", False, True)
 		info_mappings = info_mappings.split('\n')
@@ -73,7 +76,9 @@ class GdbPage:
 			page, name = GdbPage.createPage(elem)
 			if name not in memory:
 				memory[name] = []
-			memory[name].append(page)
+
+			if ((name == NAME_EXEC and (DATA_SEGMENT_ADDR >= page.getStartAddr() or DATA_SEGMENT_ADDR < page.getEndAddr())) or name == "[stack]" or name == "[heap]") or DATA_SEGMENT_ADDR == 0:
+				memory[name].append(page)
 
 		return memory
 
@@ -92,9 +97,9 @@ class RiverTracer:
 		self.symbolized = symbolized
 		self.resetSymbolicMemoryAtEachRun = False # KEEP IT FALSE OR TELL CPADURARU WHY YOU DO OTHERWISE
 		self.maxInputSize = maxInputSize
+		self.findCrash = False
 
 		INPUT_BUFFER_ADDRESS = self.castGDBValue(int((gdb.execute("p &inputBuf", False, True)).split(") ")[1].split(" <")[0], 0))
-		print(hex(INPUT_BUFFER_ADDRESS))
 
 		if symbolized is False:
 			self.context.enableSymbolicEngine(False)
@@ -139,10 +144,12 @@ class RiverTracer:
 	def getAstContext(self):
 		return self.context.getAstContext()
 
-	def castGDBValue(self, value):
+	@staticmethod
+	def castGDBValue(value):
 		if int(value) < 0:
 			value = int(value) + (1 << 64)
 		return int(value)
+
 
 	# Given a context where to emulate the binary already setup in memory with its input, and the PC address to emulate from, plus a few parameters...
 	# Returns a tuple (true if the optional target address was reached, num new basic blocks found - if countBBlocks is True)
@@ -152,6 +159,7 @@ class RiverTracer:
 		global END_EXEC
 		global NAME_EXEC
 		global MAPPINGS
+		global ADDRESS_HANDLES
 		global INPUT_BUFFER_ADDRESS
 
 		targetAddressFound = False
@@ -159,18 +167,16 @@ class RiverTracer:
 		numNewBasicBlocks = 0  # The number of new basic blocks found by this function (only if countBBlocks was activated)
 		newBasicBlocksFound = set()
 		basicBlocksPathFoundThisRun = []
+		self.findCrash = False
 
 		def updateMemory(memory, name_exec, inputToTry):
 			global INPUT_BUFFER_ADDRESS
 			update_memory = []
 
 			for key in memory:
-				if key == name_exec or key == "[stack]" or key == "[heap]" or key == "none":
+				if key == name_exec or key == "[stack]" or key == "[heap]":# or key == "none":
 					update_memory.extend(memory[key])
-			
-			const_list = self.context.getSymbolicMemory()
-			
-			taint_list = self.context.getTaintedMemory()
+
 			for page in update_memory:
 				startAddr = page.getStartAddr()
 				size = int(page.getSize() / 8)
@@ -181,15 +187,20 @@ class RiverTracer:
 				
 				for s in addresses:
 					if s != self.context.getConcreteMemoryAreaValue(startAddr, 8):
-						self.context.setConcreteMemoryAreaValue(startAddr, s)
-					startAddr += 8
+						for byte_value in s:
+							if byte_value != self.context.getConcreteMemoryValue(MemoryAccess(startAddr, CPUSIZE.BYTE)):
+								self.context.setConcreteMemoryValue(startAddr, byte_value)
+							startAddr += 1
+						assert (s == self.context.getConcreteMemoryAreaValue(startAddr - 8, 8)), "Memory restoration failed"
+					else:
+						startAddr += 8
+
 
 		def restoreRegister(tritonRegister, registerName):
 			if self.context.getConcreteRegisterValue(tritonRegister) != self.castGDBValue(gdb.parse_and_eval(registerName)):
 				self.context.setConcreteRegisterValue(tritonRegister, self.castGDBValue((gdb.parse_and_eval(registerName))))
 
 		def restoreContext():
-			registers_list = self.context.getSymbolicRegisters()
 			restoreRegister(self.context.registers.rax, '$rax')
 			restoreRegister(self.context.registers.rbx, '$rbx')
 			restoreRegister(self.context.registers.rcx, '$rcx')
@@ -209,7 +220,44 @@ class RiverTracer:
 			restoreRegister(self.context.registers.rip, '$rip')
 			restoreRegister(self.context.registers.eflags, '$eflags')
 
-	
+		def getHandlersAddresses():
+			handleCalls = ["memmove"]
+			addresses = []
+			for call in handleCalls:
+				gdb_command = "print *" + call
+				addr = gdb.execute(gdb_command, False, True)
+				addresses.append(int((addr.split("} ")[1]).split(" <")[0].replace('\'',''), 0))
+			return addresses
+
+		def handleMemmove():
+			if symbolized:
+				size = self.context.getRegisterAst(self.context.registers.rdx).evaluate()
+				startAddress = self.context.getRegisterAst(self.context.registers.rdi).evaluate()
+				srcAddress = self.context.getRegisterAst(self.context.registers.rsi).evaluate()
+				# gdb.execute("stepi")
+				gdb.execute("finish")
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+				restoreContext()
+				for offset in range(size):
+					addr = startAddress + offset
+					if self.context.isMemorySymbolized(srcAddress + offset):
+						self.context.assignSymbolicExpressionToMemory(self.context.getSymbolicMemory().get(srcAddress + offset), MemoryAccess(addr, CPUSIZE.BYTE))
+			else:
+				gdb.execute("finish")
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+				restoreContext()
+
+		def event_handler(event):
+			# if gdb.selected_inferior().is_running
+			try:
+				if isinstance(event, gdb.SignalEvent):
+					gdb.execute("set scheduler-locking on") # to avoid parallel signals in other threads
+					if event.stop_signal == "SIGABRT" or event.stop_signal == "SIGSEGV":
+						self.findCrash = True
+					gdb.execute("set scheduler-locking off") # otherwise just this thread is continued, leading to a deadlock   
+			except:
+				pass
+
 		def onBasicBlockFound(addr):
 			nonlocal numNewBasicBlocks
 			nonlocal newBasicBlocksFound
@@ -236,8 +284,13 @@ class RiverTracer:
 
 		command = "set {}{}{} {}={}".format("{uint8_t[",(len(inputToTry.buffer) + 1), "]}", "inputBuf", value)
 		gdb.execute(command)
+		handlerAddresses = getHandlersAddresses()
+
+		gdb.events.stop.connect(event_handler)
 
 		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
+		
+		restoreContext()
 		while pc < gdb_pc:
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
 
@@ -246,6 +299,7 @@ class RiverTracer:
 			instruction.setOpcode(opcode)
 			instruction.setAddress(pc)
 
+			#Process
 			self.context.processing(instruction)
 			logging.info(instruction)
 
@@ -253,7 +307,6 @@ class RiverTracer:
 			prevpc = pc
 			pc = self.context.getRegisterAst(self.context.registers.rip).evaluate()
 
-		restoreContext()
 		while pc:
 			# Fetch opcode
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
@@ -283,7 +336,7 @@ class RiverTracer:
 					break
 				gdb_pc = self.castGDBValue(gdb.parse_and_eval('$rip'))
 
-			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC):
+			if (gdb_pc >= END_EXEC or gdb_pc <= BASE_EXEC) and gdb_pc not in handlerAddresses:
 				pc = gdb_pc
 
 				while ((pc >= END_EXEC or pc <= BASE_EXEC) and gdb.selected_inferior().pid != 0):
@@ -297,10 +350,18 @@ class RiverTracer:
 					break
 				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
 				restoreContext()
+			elif gdb_pc in handlerAddresses:
+				# print("intra", file=sys.stderr)
+				# print(hex(gdb_pc), file=sys.stderr)
+				handleMemmove()
+
+
+
 			pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 			
 			if self.TARGET_TO_REACH is not None and pc == self.TARGET_TO_REACH:
 				targetAddressFound = True
+
 
 		logging.info('[+] Emulation done.')
 		if countBBlocks:
@@ -440,6 +501,7 @@ class RiverTracer:
 		global IS_NORMAL
 		global MAPPINGS
 		global NAME_EXEC
+		global DATA_SEGMENT_ADDR
 
 		outEntryFuncAddr = None
 		# gdb.execute("set args /home/ubuntu/Desktop/licenta/river/River3/TestPrograms/libxml2-v2.9.2/input-files/emptyArray")
@@ -449,6 +511,10 @@ class RiverTracer:
 		info_exec = gdb.execute("info proc exe", False, True)
 		NAME_EXEC = (info_exec.split("exe = ")[1]).split('\n')[0].replace('\'', '')
 		exec_mapping = MAPPINGS[NAME_EXEC]
+
+
+		data_section = gdb.execute("maintenance info sections | grep .data", False, True)
+		DATA_SEGMENT_ADDR = int(data_section.split('\n')[2].split()[1].split('-')[0].replace('\'',''), 0)
 
 		for i in range(len(exec_mapping)):
 			SIZE += exec_mapping[i].getSize()
@@ -476,8 +542,8 @@ class RiverTracer:
 					break
 		assert outEntryFuncAddr != None, "Exported function wasn't found"
 
-		if hex(outEntryFuncAddr) < hex(BASE_EXEC):
-			outEntryFuncAddr = outEntryFuncAddr + BASE_EXEC
+		if RiverTracer.castGDBValue(outEntryFuncAddr) < RiverTracer.castGDBValue(BASE_EXEC):
+			outEntryFuncAddr = RiverTracer.castGDBValue(outEntryFuncAddr) + RiverTracer.castGDBValue(BASE_EXEC)
 		else:
 			IS_NORMAL = False
 
@@ -490,8 +556,11 @@ class RiverTracer:
 			for phdr in phdrs:
 				size = phdr.physical_size
 				vaddr = phdr.virtual_address
+
+
 				if IS_NORMAL:
 					vaddr += BASE_EXEC
+
 				# print('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size), file=sys.stderr)
 				logging.info('[+] Loading 0x%06x - 0x%06x' % (vaddr, vaddr + size))
 				tracersInstances[tracerIndex].context.setConcreteMemoryAreaValue(vaddr, bytes(phdr.content))
@@ -702,11 +771,14 @@ BASE_PLT   = 0x10000000
 BASE_ARGV  = 0x20000000
 BASE_ALLOC = 0x30000000
 
+DATA_SEGMENT_ADDR = 0
+
 BASE_EXEC = 0
 END_EXEC = 0
 SIZE = 0
 IS_NORMAL = True
 
+ADDRESS_HANDLES = []
 MAPPINGS = {}
 NAME_EXEC = None
 

@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdint.h>
+
+static uint8_t inputBuf[1 << 20];
 
 int RIVERTestOneInput(const char* data, const int size)
 {
@@ -13,6 +17,6 @@ int RIVERTestOneInput(const char* data, const int size)
 
 int main(int ac, const char **av)
 {
-  return RIVERTestOneInput(av[1], 5);
+  return RIVERTestOneInput((char *)inputBuf, 5);
 }
 

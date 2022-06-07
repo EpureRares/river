@@ -47,7 +47,7 @@ def parseArgs():
     
     curr_path = os.getcwd()
     proj_root_idx = curr_path.find("/River3/")
-    arguments_path = curr_path[0 : proj_root_idx] + "/River3/TestPrograms/libxml2-v2.9.2/arguments.json"
+    arguments_path = curr_path[0 : proj_root_idx] + "/River3/Unittests/arguments.json"
 
     with open(arguments_path, 'r') as f:
         ap.set_defaults(**json.load(f))

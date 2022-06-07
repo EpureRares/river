@@ -1,0 +1,9 @@
+{
+  "binaryPath": "/home/ubuntu/Desktop/auux/river/River3/Unittests/BinaryFiles/crackme_sample",
+  "entryfuncName": "main",
+  "architecture": "x64",
+  "maxLen": 256,
+  "logLevel": "CRITICAL",
+  "secondsBetweenStats": 10,
+  "outputType": "textual"
+}

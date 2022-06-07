@@ -70,9 +70,9 @@ def test_input(binary_path, binary_input):
         return 'skipped'
 
     # Used for communicating using stdin/stdout
-    # print(f'Testing {binary_path} with input {binary_input}')
-    # result.stdin.write(binary_input)
-    # result.stdin.flush()
+    print(f'Testing {binary_path} with input {binary_input}')
+    result.stdin.write(binary_input)
+    result.stdin.flush()
     result.stdin.close()
     result.wait()
     return result.returncode

@@ -16,7 +16,7 @@ void RIVERTestOneInput(char *ptr)
       printf("Print wrong password\n");
       return;
     }
-    
+    printf("%s\n", ptr);    
     i++;
   }
   

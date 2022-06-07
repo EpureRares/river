@@ -49,7 +49,7 @@ def Expand(symbolicTracer : RiverTracer, inputToTry):
 
     # This represents the current path constraint, dummy initialization
     currentPathConstraint = astCtxt.equal(astCtxt.bvtrue(), astCtxt.bvtrue())
-    print("[Constrints]: " + str(PathConstraints))
+
     # Go through the path constraints from bound of the input (to prevent backtracking as described in the paper)
     PCLen = len(PathConstraints)
     for pcIndex in range(inputToTry.bound, PCLen):
@@ -93,10 +93,11 @@ def Expand(symbolicTracer : RiverTracer, inputToTry):
     return inputs
 
 # This function starts with a given seed dictionary and does concolic execution starting from it.
-def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outputEndpoint):
+def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outputEndpoint, outputStats):
     # Init the worklist with the initial seed dict
     worklist  = RiverUtils.InputsWorklist()
     forceFinish = False
+    vulnerableInp = []
 
     # Put all the the inputs in the seed dictionary to the worklist
     for initialSeed in initialSeedDict:
@@ -112,9 +113,25 @@ def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outp
         inputSeed : RiverUtils.Input = worklist.extractInput()
         newInputs = Expand(symbolicTracer, inputSeed)
 
+        if symbolicTracer.findCrash:
+            inputBuffer = list(inputSeed.buffer.values())
+            sizeInput = len(inputBuffer)
+            alreadyFound = False
+            for inputElement in vulnerableInp:
+                if len(inputElement) > sizeInput and inputElement[:sizeInput] == inputBuffer:
+                    alreadyFound = True
+                    break
+                elif len(inputElement) <= sizeInput and inputBuffer[:len(inputElement)] == inputElement:
+                    alreadyFound = True
+                    break
+            if not alreadyFound:
+                vulnerableInp.append(inputSeed.buffer.values())
+
+        print(newInputs, file=sys.stderr)
         for newInp in newInputs:
             # Execute the input to detect real issues with it
-            issue = ExecuteInputToDetectIssues(binaryPath, newInp)
+            # issue = ExecuteInputToDetectIssues(binaryPath, newInp)
+            issue = None
             if issue != None:
                 print(f"{binaryPath} has issues: {issue} on input {newInp}")
                 if outputEndpoint is not None:
@@ -125,6 +142,20 @@ def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outp
             # Assign this input a priority, and check if the hacked target address was found or not
             targetFound, newInp.priority = ScoreInput(newInp, simpleTracer)
 
+            if simpleTracer.findCrash:
+                inputBuffer = list(newInp.buffer.values())
+                sizeInput = len(inputBuffer)
+                alreadyFound = False
+                for inputElement in vulnerableInp:
+                    if len(inputElement) > sizeInput and inputElement[:sizeInput] == inputBuffer:
+                        alreadyFound = True
+                        break
+                    elif len(inputElement) <= sizeInput and inputBuffer[:len(inputElement)] == inputElement:
+                        alreadyFound = True
+                        break
+                if not alreadyFound:
+                    vulnerableInp.append(newInp.buffer.values())
+
             if targetFound:
                 logging.critical(f"The solution to get to the target address is input {newInp}")
                 # TODO: Bogdan put this in output somewhere , folder, visualization etc.
@@ -133,13 +164,14 @@ def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outp
 
             # Then put it in the worklist
             worklist.addInput(newInp)
-
         currTime = outputStats.UpdateOutputStats(startTime, currTime, collectorTracers=[simpleTracer])
 
         if forceFinish:
             break
 
     currTime = outputStats.UpdateOutputStats(startTime, currTime, collectorTracers=[simpleTracer], forceOutput=True)
+
+    return vulnerableInp
 
 def SendIssueDataToEndpoint(binaryPath, issue, causal_input, endpoint):
     payload = {
@@ -181,7 +213,7 @@ if __name__ == '__main__':
     RiverUtils.processSeedDict(initialSeedDict) # Transform the initial seed dict to bytes instead of chars if needed
 
     SearchInputs(symbolicTracer=symbolicTracer, simpleTracer=simpleTracer, initialSeedDict=initialSeedDict,
-                binaryPath=args.binaryPath, outputEndpoint=args.outputEndpoint)
+                binaryPath=args.binaryPath, outputEndpoint=args.outputEndpoint, outputStats=outputStats)
 
     if RECONSTRUCT_BB_GRAPH:
         print(f"Reconstructed graph is: {BlocksGraph}")
