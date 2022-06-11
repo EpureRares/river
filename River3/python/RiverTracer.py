@@ -74,10 +74,11 @@ class GdbPage:
 
 		for elem in info_mappings:
 			page, name = GdbPage.createPage(elem)
-			if name not in memory:
-				memory[name] = []
+			
 
-			if ((name == NAME_EXEC and (DATA_SEGMENT_ADDR >= page.getStartAddr() or DATA_SEGMENT_ADDR < page.getEndAddr())) or name == "[stack]" or name == "[heap]") or DATA_SEGMENT_ADDR == 0:
+			if ((name == NAME_EXEC and (DATA_SEGMENT_ADDR >= page.getStartAddr() and DATA_SEGMENT_ADDR < page.getEndAddr())) or name == "[stack]" or name == "[heap]") or DATA_SEGMENT_ADDR == 0:
+				if name not in memory:
+					memory[name] = []
 				memory[name].append(page)
 
 		return memory
@@ -174,26 +175,18 @@ class RiverTracer:
 			update_memory = []
 
 			for key in memory:
-				if key == name_exec or key == "[stack]" or key == "[heap]":# or key == "none":
-					update_memory.extend(memory[key])
-
+				update_memory.extend(memory[key])
+				
+			inferior = gdb.inferiors()[0]
 			for page in update_memory:
 				startAddr = page.getStartAddr()
-				size = int(page.getSize() / 8)
-				examine_command = "x/" + str(size) + "ug " + str(hex(startAddr))
-				addresses = gdb.execute(examine_command, False, True)
-				addresses = [elem for elem in re.split("[\n\t]", addresses)[:-1]]
-				addresses = [int(elem).to_bytes(8, byteorder='little') for elem in addresses if ":" not in elem]
+				pageSize = page.getSize()
+				addresses = inferior.read_memory(startAddr, pageSize)
 				
-				for s in addresses:
-					if s != self.context.getConcreteMemoryAreaValue(startAddr, 8):
-						for byte_value in s:
-							if byte_value != self.context.getConcreteMemoryValue(MemoryAccess(startAddr, CPUSIZE.BYTE)):
-								self.context.setConcreteMemoryValue(startAddr, byte_value)
-							startAddr += 1
-						assert (s == self.context.getConcreteMemoryAreaValue(startAddr - 8, 8)), "Memory restoration failed"
-					else:
-						startAddr += 8
+				for byteAddr in addresses.tobytes():
+					if byteAddr != self.context.getConcreteMemoryValue(MemoryAccess(startAddr, CPUSIZE.BYTE)):
+						self.context.setConcreteMemoryValue(startAddr, byteAddr)
+					startAddr += 1
 
 
 		def restoreRegister(tritonRegister, registerName):
@@ -221,7 +214,7 @@ class RiverTracer:
 			restoreRegister(self.context.registers.eflags, '$eflags')
 
 		def getHandlersAddresses():
-			handleCalls = ["memmove"]
+			handleCalls = ["memmove", "memcpy"]
 			addresses = []
 			for call in handleCalls:
 				gdb_command = "print *" + call
