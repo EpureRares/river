@@ -125,7 +125,7 @@ def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outp
                     alreadyFound = True
                     break
             if not alreadyFound:
-                vulnerableInp.append(inputSeed.buffer.values())
+                vulnerableInp.append(list(inputSeed.buffer.values()))
 
         print(newInputs, file=sys.stderr)
         for newInp in newInputs:
@@ -154,7 +154,7 @@ def SearchInputs(symbolicTracer, simpleTracer, initialSeedDict, binaryPath, outp
                         alreadyFound = True
                         break
                 if not alreadyFound:
-                    vulnerableInp.append(newInp.buffer.values())
+                    vulnerableInp.append(list(newInp.buffer.values()))
 
             if targetFound:
                 logging.critical(f"The solution to get to the target address is input {newInp}")

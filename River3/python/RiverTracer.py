@@ -13,12 +13,17 @@ import pdb
 import gdb 
 import numpy
 import time
+import subprocess
 
 from bitstring import BitArray
 
 # Some constants
 # Where the input buffer will reside in the emulated program
 INPUT_BUFFER_ADDRESS = 0x10000000
+NO_EMULATION = 0
+LIST_COVERAGE = {}
+numberExecutions = [2,100,500,1000,1500,2000,2500,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000,8500,9000,9500,10000]
+
 
 class Executor:
 	def __init__(self, cmd):
@@ -162,6 +167,9 @@ class RiverTracer:
 		global MAPPINGS
 		global ADDRESS_HANDLES
 		global INPUT_BUFFER_ADDRESS
+		global NO_EMULATION
+		global LIST_COVERAGE
+		global numberExecutions
 
 		targetAddressFound = False
 		currentBBlockAddr = pc  # The basic block address that we started to analyze currently
@@ -170,23 +178,42 @@ class RiverTracer:
 		basicBlocksPathFoundThisRun = []
 		self.findCrash = False
 
-		def updateMemory(memory, name_exec, inputToTry):
-			global INPUT_BUFFER_ADDRESS
+		def updateMemory(memory, name_exec):
 			update_memory = []
+			cacheSize = 131072;
+
 
 			for key in memory:
 				update_memory.extend(memory[key])
-				
+			
+
 			inferior = gdb.inferiors()[0]
+
 			for page in update_memory:
 				startAddr = page.getStartAddr()
 				pageSize = page.getSize()
-				addresses = inferior.read_memory(startAddr, pageSize)
-				
-				for byteAddr in addresses.tobytes():
-					if byteAddr != self.context.getConcreteMemoryValue(MemoryAccess(startAddr, CPUSIZE.BYTE)):
-						self.context.setConcreteMemoryValue(startAddr, byteAddr)
-					startAddr += 1
+				gdbMemorySection = inferior.read_memory(startAddr, pageSize).tobytes()
+				riverMemorySection = self.context.getConcreteMemoryAreaValue(startAddr, pageSize)
+
+				if  gdbMemorySection == riverMemorySection:
+					continue
+
+				addrIter = 0
+				while pageSize > 0:
+					condition = (pageSize < cacheSize)
+					chunkSize = condition * pageSize + (not condition) * cacheSize
+					addresses = gdbMemorySection[addrIter:(addrIter+chunkSize)]
+					riverAddresses = riverMemorySection[addrIter:(addrIter+chunkSize)]
+					if addresses == riverAddresses:
+						addrIter += chunkSize
+					else:
+						for index in range(chunkSize):
+							if addresses[index] != riverAddresses[index]:
+								self.context.setConcreteMemoryValue(startAddr + addrIter, addresses[index])
+							addrIter += 1
+
+					pageSize -= cacheSize
+				assert (addrIter == page.getSize()), ("Memory restoration failed: get " + str(addrIter) + " accessed bytes, expected " + str(page.getSize()))
 
 
 		def restoreRegister(tritonRegister, registerName):
@@ -214,7 +241,7 @@ class RiverTracer:
 			restoreRegister(self.context.registers.eflags, '$eflags')
 
 		def getHandlersAddresses():
-			handleCalls = ["memmove", "memcpy"]
+			handleCalls = ["memmove", "memcpy", "strcpy"]
 			addresses = []
 			for call in handleCalls:
 				gdb_command = "print *" + call
@@ -227,21 +254,20 @@ class RiverTracer:
 				size = self.context.getRegisterAst(self.context.registers.rdx).evaluate()
 				startAddress = self.context.getRegisterAst(self.context.registers.rdi).evaluate()
 				srcAddress = self.context.getRegisterAst(self.context.registers.rsi).evaluate()
-				# gdb.execute("stepi")
 				gdb.execute("finish")
-				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC)
 				restoreContext()
+
 				for offset in range(size):
 					addr = startAddress + offset
 					if self.context.isMemorySymbolized(srcAddress + offset):
 						self.context.assignSymbolicExpressionToMemory(self.context.getSymbolicMemory().get(srcAddress + offset), MemoryAccess(addr, CPUSIZE.BYTE))
 			else:
 				gdb.execute("finish")
-				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC)
 				restoreContext()
 
 		def event_handler(event):
-			# if gdb.selected_inferior().is_running
 			try:
 				if isinstance(event, gdb.SignalEvent):
 					gdb.execute("set scheduler-locking on") # to avoid parallel signals in other threads
@@ -267,16 +293,17 @@ class RiverTracer:
 
 		logging.info('[+] Starting emulation.')
 
-		value = "{"
+
+		values = bytearray()
 		for (index, content) in inputToTry.buffer.items():
-			value += str(content) + ","
-		value += "0}"
+			values += content.to_bytes(1, 'little')
+		values += b'\0'
 
 		if gdb.selected_inferior().pid == 0:
 			gdb.execute("start")
 
-		command = "set {}{}{} {}={}".format("{uint8_t[",(len(inputToTry.buffer) + 1), "]}", "inputBuf", value)
-		gdb.execute(command)
+		gdb.inferiors()[0].write_memory(INPUT_BUFFER_ADDRESS, values, len(inputToTry.buffer.items()))
+
 		handlerAddresses = getHandlersAddresses()
 
 		gdb.events.stop.connect(event_handler)
@@ -284,6 +311,7 @@ class RiverTracer:
 		gdb_pc = (self.castGDBValue(gdb.parse_and_eval('$rip')))
 		
 		restoreContext()
+		updateMemory(GdbPage.createMemoryDict(), NAME_EXEC)
 		while pc < gdb_pc:
 			opcode = self.context.getConcreteMemoryAreaValue(pc, 16)
 
@@ -341,11 +369,9 @@ class RiverTracer:
 
 				if gdb.selected_inferior().pid == 0:
 					break
-				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC, inputToTry)
+				updateMemory(GdbPage.createMemoryDict(), NAME_EXEC)
 				restoreContext()
 			elif gdb_pc in handlerAddresses:
-				# print("intra", file=sys.stderr)
-				# print(hex(gdb_pc), file=sys.stderr)
 				handleMemmove()
 
 
@@ -398,7 +424,6 @@ class RiverTracer:
 				else:
 					try:
 						self.context.setConcreteVariableValue(self.symbolicVariablesCache[byteIndex], value)
-						self.context.taintMemory(MemoryAccess(byteAddr, CPUSIZE.BYTE))
 						assert self.context.getConcreteMemoryValue(MemoryAccess(byteAddr, CPUSIZE.BYTE)) == value
 					except:
 						pass
@@ -430,10 +455,11 @@ class RiverTracer:
 			#for byteIndex, value in enumerate(inputToTry.buffer):
 			#	symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized)
 		else:
-			inputLen = max(inputToTry.buffer.keys()) + 1
-			# self.context.symbolizeRegister(self.context.registers.rsi)
+			inputLen = len(inputToTry.buffer.keys()) + 1
+			index = 0
 			for byteIndex, value in inputToTry.buffer.items():
-				symbolizeAndConcretizeByteIndex(byteIndex, value, symbolized)
+				symbolizeAndConcretizeByteIndex(index, value, symbolized)
+				index += 1
 
 		if symbolized:
 			for sentinelByteIndex in range(inputLen, inputLen + RiverUtils.SENTINEL_SIZE):

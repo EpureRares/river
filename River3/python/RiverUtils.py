@@ -6,6 +6,7 @@ import logging
 import argparse
 import os
 import json
+import sys
 from triton import TritonContext, ARCH, Instruction, MemoryAccess, CPUSIZE, MODE
 
 # Put the last bytes as fake sentinel inputs to promote some usages detection outside buffer
@@ -45,9 +46,7 @@ def parseArgs():
 
     args = ap.parse_args()
     
-    curr_path = os.getcwd()
-    proj_root_idx = curr_path.find("/River3/")
-    arguments_path = curr_path[0 : proj_root_idx] + "/River3/Unittests/arguments.json"
+    arguments_path = os.environ['ARGUMENT_PATH']
 
     with open(arguments_path, 'r') as f:
         ap.set_defaults(**json.load(f))
